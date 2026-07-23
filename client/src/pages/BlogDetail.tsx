@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { blogService, settingsService } from '../services/api';
-import { Blog } from '../types/portfolio';
+import type { Blog } from '../types/portfolio';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { ArrowLeft, Calendar, Clock, BookOpen, ChevronRight } from 'lucide-react';

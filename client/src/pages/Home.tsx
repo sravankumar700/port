@@ -6,8 +6,9 @@ import {
   achievementService, certificationService, blogService, messageService, 
   resumeService, settingsService, analyticsService
 } from '../services/api';
-import { fetchGitHubStats, GitHubStats } from '../services/github';
-import { 
+import { fetchGitHubStats } from '../services/github';
+import type { GitHubStats } from '../services/github';
+import type { 
   Project, Skill, Education, Experience, Achievement, 
   Certification, Blog, SocialLink 
 } from '../types/portfolio';
@@ -19,7 +20,7 @@ import { IconRenderer } from '../utils/icons';
 import { useAnalytics } from '../hooks/useAnalytics';
 
 import { 
-  Github, Linkedin, Mail, FileText, Send, Search, 
+  Linkedin, Mail, FileText, Send, Search, 
   ExternalLink, Calendar, Award, GraduationCap, Briefcase, 
   MapPin, Code2, ShieldCheck, CheckCircle2, ChevronDown,
   BookOpen, Star, GitFork, User, AlertCircle, Play, Info
@@ -757,7 +758,7 @@ export const Home: React.FC = () => {
                       rel="noopener noreferrer"
                       className="w-full bg-navy-card border border-navy-card/80 hover:bg-navy-card text-white hover:text-accent-cyan font-sans font-semibold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow"
                     >
-                      <Github className="w-4 h-4" />
+                      <GitFork className="w-4 h-4" />
                       Browse Repository
                     </a>
                   )}
