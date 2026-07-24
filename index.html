@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #262a44;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.6rem;
+    }
+    header p {
+      margin: 10px auto 0;
+      max-width: 700px;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .section-title {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    .about,
+    .skills,
+    .projects,
+    .contact {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+    }
+    .about p,
+    .contact p {
+      line-height: 1.8;
+      margin: 0;
+    }
+    .skills-list,
+    .project-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .skills-list li,
+    .project-card {
+      background: #f7f8fc;
+      padding: 16px;
+      border-radius: 10px;
+    }
+    .project-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+    .project-card p {
+      margin: 0;
+      color: #555;
+      line-height: 1.7;
+    }
+    .contact a {
+      color: #262a44;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 0.95rem;
+    }
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Portfolio</h1>
+    <p>Welcome to my personal portfolio. I build clean, modern web experiences and bring ideas to life with thoughtful design and reliable code.</p>
+  </header>
+
+  <main class="container">
+    <section class="about">
+      <h2 class="section-title">About Me</h2>
+      <p>Hello! I'm a web developer passionate about creating polished portfolio websites, engaging user interfaces, and responsive layouts. I enjoy solving problems with HTML, CSS, and JavaScript while focusing on clarity and performance.</p>
+    </section>
+
+    <section class="skills" style="margin-top: 30px;">
+      <h2 class="section-title">Skills</h2>
+      <ul class="skills-list grid grid-2">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>Responsive Design</li>
+        <li>Web Accessibility</li>
+        <li>Layout and Typography</li>
+        <li>Portfolio Design</li>
+      </ul>
+    </section>
+
+    <section class="projects" style="margin-top: 30px;">
+      <h2 class="section-title">Projects</h2>
+      <div class="project-list">
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <p>Designed a personal showcase website with a modern layout, case studies, and contact section to highlight skills and work.</p>
+        </div>
+        <div class="project-card">
+          <h3>Landing Page</h3>
+          <p>Built a responsive landing page focused on clear messaging, strong visuals, and mobile-first performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" style="margin-top: 30px;">
+      <h2 class="section-title">Contact</h2>
+      <p>If you'd like to collaborate or learn more, feel free to reach out:</p>
+      <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+      <p>LinkedIn: <a href="#">linkedin.com/in/yourname</a></p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 My Portfolio. Designed with HTML only.
+  </footer>
+</body>
+</html>
