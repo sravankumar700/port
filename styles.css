@@ -816,82 +816,249 @@ footer {
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     nav {
         flex-direction: column;
-        gap: 20px;
-        padding: 15px 25px;
+        gap: 16px;
+        padding: 18px 32px;
+        padding-top: max(18px, env(safe-area-inset-top));
     }
 
     nav ul {
-        gap: 20px;
+        width: 100%;
+        gap: 24px;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 2px 0 8px;
+        scrollbar-width: none;
+    }
+
+    nav ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    nav a {
+        white-space: nowrap;
+    }
+
+    .hero {
+        min-height: 720px;
+        padding: 190px 48px 80px;
     }
 
     .hero-content h1 {
-        font-size: 52px;
+        font-size: clamp(52px, 8vw, 76px);
     }
 
-    .hero-content .tagline {
-        font-size: 18px;
-    }
-
-    .section-title {
-        font-size: 36px;
+    .about,
+    .portfolio,
+    .services,
+    .cta-section,
+    .skills,
+    .testimonials {
+        padding: 80px 48px;
     }
 
     .about-content,
     .services-grid {
+        gap: 48px;
+    }
+
+    .skills-grid {
+        gap: 24px;
+    }
+
+    .skill-card,
+    .portfolio-content {
+        padding: 30px;
+    }
+
+    .portfolio-grid {
+        gap: 28px;
+    }
+
+    .portfolio-image {
+        height: 220px;
+    }
+
+    .cta-section h2 {
+        font-size: clamp(42px, 6vw, 56px);
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        font-size: 15px;
+    }
+
+    nav {
+        gap: 12px;
+        padding: 14px 20px;
+        padding-top: max(14px, env(safe-area-inset-top));
+    }
+
+    .logo {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    nav ul {
+        gap: 18px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 680px;
+        padding: 170px 20px 64px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(42px, 13vw, 56px);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+    }
+
+    .hero-content .tagline {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 24px;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 28px;
+    }
+
+    .btn {
+        width: 100%;
+        min-height: 48px;
+        padding: 14px 20px;
+    }
+
+    .about,
+    .portfolio,
+    .services,
+    .cta-section,
+    .skills,
+    .testimonials {
+        padding: 64px 20px;
+    }
+
+    .section-title {
+        font-size: clamp(30px, 10vw, 40px);
+        line-height: 1.1;
+        letter-spacing: 2px;
+        margin-bottom: 36px;
+    }
+
+    .about-content,
+    .services-grid,
+    .skills-grid,
+    .portfolio-grid,
+    .credentials,
+    .education-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 28px;
+    }
+
+    .about-text h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .about-text p {
+        line-height: 1.7;
+        margin-bottom: 18px;
+    }
+
+    .credentials {
+        margin-top: 8px;
+    }
+
+    .credential-item {
+        padding: 24px;
+    }
+
+    .credential-item p {
+        font-size: 22px;
+        overflow-wrap: anywhere;
     }
 
     .skills-grid,
     .portfolio-grid {
-        grid-template-columns: 1fr;
+        margin-top: 30px;
+    }
+
+    .skill-card,
+    .portfolio-content {
+        padding: 24px;
+    }
+
+    .skill-tags {
+        gap: 8px;
+    }
+
+    .tag {
+        padding: 7px 11px;
+    }
+
+    .portfolio-image {
+        height: 170px;
+    }
+
+    .portfolio-content h3 {
+        font-size: 20px;
     }
 
     .project-features {
         grid-template-columns: 1fr;
     }
 
-    .credentials {
-        grid-template-columns: 1fr;
-    }
-
-    .education-grid {
-        grid-template-columns: 1fr;
-    }
-
     .experience-heading {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
 
     .experience-date {
         align-self: flex-start;
     }
 
-    .hero-cta {
-        flex-direction: column;
+    .service-item {
+        padding-left: 22px;
+        padding-bottom: 28px;
     }
 
-    .btn {
-        width: 100%;
+    .cta-section h2 {
+        font-size: clamp(34px, 10vw, 46px);
+        line-height: 1.15;
     }
 
-    .about,
-    .portfolio,
-    .services,
-    .cta-section {
-        padding: 60px 30px;
+    .cta-section p {
+        font-size: 15px;
     }
 
-    .skills {
-        padding: 60px 30px;
+    footer {
+        padding: 40px 20px max(40px, env(safe-area-inset-bottom));
     }
 
-    .testimonials {
-        padding: 60px 30px;
+    .social-links {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .footer-text {
+        line-height: 1.6;
+    }
+}
+
+@media (min-width: 1025px) {
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
 }
 
