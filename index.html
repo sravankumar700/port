@@ -1,15 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Senior Full-Stack Engineer Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sravan Kumar | AI &amp; Data Science Engineer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="root"></div>
-  <script src="app.js"></script>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">SRAVAN KUMAR</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Sravan Kumar</h1>
+            <p class="tagline">AI &amp; Data Science Engineer | Python Developer</p>
+            <p class="tagline">Building AI-powered applications, backend systems and data-driven products.</p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <button class="btn btn-secondary" type="button" disabled title="Resume link will be added when available">Download Resume</button>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/sravankumar700" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <button class="btn-link" type="button" disabled title="LinkedIn profile link not provided">LinkedIn</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Building Practical Software</h2>
+                <p>I am a final-year B.Tech student specializing in Artificial Intelligence &amp; Data Science, graduating in 2027.</p>
+                <p>I build practical software products using Python, backend technologies, databases and AI/ML technologies. My work includes an AI-powered recruitment platform, code analysis platform and business management software.</p>
+                <p>I am strengthening my Python, DSA, Java, SQL, AI/ML, Generative AI and backend engineering skills.</p>
+            </div>
+            <div class="credentials">
+                <div class="credential-item"><h3>Education</h3><p>B.Tech - AI &amp; Data Science</p></div>
+                <div class="credential-item"><h3>Graduation</h3><p>2027</p></div>
+                <div class="credential-item"><h3>Primary Language</h3><p>Python</p></div>
+                <div class="credential-item"><h3>Focus</h3><p>AI/ML - Backend - Data</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section class="about" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h2>B.Tech - Artificial Intelligence &amp; Data Science</h2>
+                <p>AVN Institute of Engineering and Technology</p>
+                <p>Graduation: 2027</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section class="services" id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="services-grid">
+            <div><div class="service-item"><h3>Digital Design Intern - Kisan 365</h3><p>April 2026 - June 2026</p></div></div>
+            <div><div class="service-item"><h3>Campus Ambassador - Unstop</h3></div></div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <h3>Core Skills</h3>
+                <div class="skill-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">MongoDB</span></div>
+            </div>
+            <div class="skill-card fade-in">
+                <h3>Working Knowledge</h3>
+                <div class="skill-tags"><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">FastAPI</span><span class="tag">REST APIs</span><span class="tag">PostgreSQL</span><span class="tag">SQLite</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">Docker</span><span class="tag">Postman</span></div>
+            </div>
+            <div class="skill-card fade-in">
+                <h3>AI / ML / GenAI</h3>
+                <div class="skill-tags"><span class="tag">Machine Learning</span><span class="tag">Generative AI</span><span class="tag">LLM APIs</span><span class="tag">Hugging Face</span><span class="tag">Ollama</span><span class="tag">Groq</span><span class="tag">Amazon Bedrock</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="portfolio" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item fade-in"><div class="portfolio-image">Zyra</div><div class="portfolio-content"><div class="category">AI / Full Stack</div><h3>Zyra - AI Recruitment &amp; Interview Platform</h3><p>An AI-powered recruitment platform designed to reduce manual HR workload through resume screening, candidate assessment, AI interviews and automated reporting.</p><p><strong>Features:</strong> Resume Analyzer, Candidate Shortlisting, MCQ Assessment, Proctoring, AI Interview, Automated Reports, Email Automation</p><p><strong>Technologies:</strong> Python - Flask - MongoDB - HTML - CSS - JavaScript - AI/LLM APIs</p><button class="btn btn-secondary" type="button" disabled>GitHub - Coming Soon</button><button class="btn btn-secondary" type="button" disabled>Live Demo - Coming Soon</button></div></div>
+            <div class="portfolio-item fade-in"><div class="portfolio-image">CodeRefine</div><div class="portfolio-content"><div class="category">AI / Developer Tools</div><h3>CodeRefine - AI Code Analysis Platform</h3><p>A web-based code analysis platform designed to identify code issues and provide intelligent analysis to help developers improve their code.</p><p><strong>Technologies:</strong> Python - Flask - JavaScript - MongoDB - AI APIs</p><button class="btn btn-secondary" type="button" disabled>GitHub - Coming Soon</button><button class="btn btn-secondary" type="button" disabled>Live Demo - Coming Soon</button></div></div>
+            <div class="portfolio-item fade-in"><div class="portfolio-image">Salon ERP</div><div class="portfolio-content"><div class="category">Business Software / Full Stack</div><h3>Salon ERP - POS &amp; CRM System</h3><p>A business management platform designed for salon operations, covering billing, customer management, loyalty programs, coupons and multi-branch operations.</p><p><strong>Features:</strong> Billing, POS, Customer Management, Loyalty, Coupons, Multi-branch Management, Offline-first workflow</p><button class="btn btn-secondary" type="button" disabled>GitHub - Coming Soon</button></div></div>
+            <div class="portfolio-item fade-in"><div class="portfolio-image">LittleOne</div><div class="portfolio-content"><div class="category">SaaS / AI</div><h3>LittleOne - Intelligent Workspace Platform</h3><p>A platform concept focused on workspace and project management with an integrated Website Intelligence Engine.</p><button class="btn btn-secondary" type="button" disabled>GitHub - Coming Soon</button></div></div>
+        </div>
+    </section>
+
+    <!-- WHAT I BUILD SECTION -->
+    <section class="services" id="what-i-build">
+        <h2 class="section-title">What I Build</h2>
+        <div class="services-grid">
+            <div><div class="service-item"><h3>AI-Powered Applications</h3><p>Practical applications using AI/ML and LLM technologies.</p></div><div class="service-item"><h3>Backend Systems</h3><p>APIs, authentication systems, database integrations and backend services using Python.</p></div></div>
+            <div><div class="service-item"><h3>Data-Driven Products</h3><p>Databases and data-oriented systems that solve practical problems.</p></div><div class="service-item"><h3>Product-Oriented Development</h3><p>Turning real-world problems into usable software products.</p></div></div>
+        </div>
+    </section>
+
+    <!-- CURRENTLY LEARNING SECTION -->
+    <section class="skills" id="learning">
+        <h2 class="section-title">Currently Learning</h2>
+        <div class="skills-grid"><div class="skill-card fade-in"><div class="skill-tags"><span class="tag">Advanced Python</span><span class="tag">Data Structures &amp; Algorithms</span><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">Machine Learning</span><span class="tag">Generative AI</span><span class="tag">MLOps</span><span class="tag">Docker</span><span class="tag">AWS</span></div></div></div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section class="about" id="certifications">
+        <h2 class="section-title">Certifications &amp; Learning</h2>
+        <div class="credentials">
+            <!-- <div class="credential-item"><h3>Fundamentals of Generative AI and Large Language Models</h3><p>NPTEL - IISc Bangalore</p></div>
+            <div class="credential-item"><h3>Python for Data Science</h3><p>NPTEL - IIT Madras</p></div> -->
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="cta-section" id="contact">
+        <h2>Let's build something meaningful.</h2>
+        <p>I'm interested in opportunities where I can build practical software, AI-powered applications and data-driven solutions.</p>
+        <div class="hero-cta"><a href="https://github.com/sravankumar700" class="btn btn-primary" target="_blank" rel="noopener noreferrer">GitHub</a><button class="btn btn-secondary" type="button" disabled>LinkedIn - Add Link</button><button class="btn btn-secondary" type="button" disabled>Email - Add Address</button></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="social-links"><a href="https://github.com/sravankumar700" target="_blank" rel="noopener noreferrer">GitHub</a><button class="btn-link" type="button" disabled>LinkedIn</button><button class="btn-link" type="button" disabled>Email</button></div>
+        <p class="footer-text">&copy; 2026 Sravan Kumar. AI &amp; Data Science | Python | AI/ML | Backend Development</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

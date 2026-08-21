@@ -1,17 +1,46 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var footer = document.querySelector('footer p');
-  var currentYear = new Date().getFullYear();
-  if (footer) {
-    footer.textContent = '© ' + currentYear + ' Senior Full-Stack Engineer Portfolio';
-  }
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
 
-  var contactLinks = document.querySelectorAll('a[href^="mailto:"], a[href*="linkedin.com"]');
-  contactLinks.forEach(function (link) {
-    link.addEventListener('mouseover', function () {
-      link.style.opacity = '0.7';
+// Intersection Observer for fade-in animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
     });
-    link.addEventListener('mouseout', function () {
-      link.style.opacity = '1';
+}, observerOptions);
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Active navigation link on scroll
+window.addEventListener('scroll', function() {
+    let current = '';
+    const sections = document.querySelectorAll('section');
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
     });
-  });
+
+    document.querySelectorAll('nav a').forEach(link => {
+        link.style.color = '';
+        if (link.getAttribute('href').slice(1) === current) {
+            link.style.color = 'var(--accent)';
+        }
+    });
 });
