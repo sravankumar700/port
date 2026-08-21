@@ -803,6 +803,18 @@ footer {
     font-size: 12px;
 }
 
+.portfolio-views {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 10px;
+    transition: color 0.25s ease;
+}
+
+.portfolio-views span {
+    color: var(--accent-light);
+    font-variant-numeric: tabular-nums;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     nav {

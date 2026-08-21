@@ -44,3 +44,33 @@ window.addEventListener('scroll', function() {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const countElement = document.getElementById('portfolio-view-count');
+    const counterKey = 'portfolio-page-view-recorded';
+
+    if (!countElement || typeof Counter !== 'function') {
+        return;
+    }
+
+    try {
+        const counter = new Counter({ workspace: 'sravan-kumar-portfolio' });
+        const hasRecordedVisit = sessionStorage.getItem(counterKey) === 'true';
+        const request = hasRecordedVisit ? counter.get('page-views') : counter.up('page-views');
+
+        request.then(function(result) {
+            const count = Number(result.value);
+            if (!Number.isFinite(count)) {
+                throw new Error('Invalid counter response');
+            }
+            countElement.textContent = count.toLocaleString();
+            if (!hasRecordedVisit) {
+                sessionStorage.setItem(counterKey, 'true');
+            }
+        }).catch(function() {
+            countElement.textContent = '\u2014';
+        });
+    } catch (error) {
+        countElement.textContent = '\u2014';
+    }
+});
