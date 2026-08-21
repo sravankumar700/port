@@ -1,7 +1,38 @@
+const navigation = document.querySelector('nav');
+const menuToggle = document.querySelector('.menu-toggle');
+
+function closeMenu() {
+    if (!navigation || !menuToggle) {
+        return;
+    }
+    navigation.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open navigation menu');
+}
+
+menuToggle?.addEventListener('click', function() {
+    const isOpen = navigation.classList.toggle('menu-open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeMenu();
+    }
+});
+
+document.addEventListener('click', function(event) {
+    if (navigation && !navigation.contains(event.target)) {
+        closeMenu();
+    }
+});
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
+        closeMenu();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             target.scrollIntoView({ behavior: 'smooth' });
