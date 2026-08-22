@@ -80,7 +80,7 @@ document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
 
     function startCarousel() {
         expandTimeoutId = window.setTimeout(function() {
-            carousel.classList.add('is-expanded');
+            projectCard.classList.add('is-expanded');
         }, 350);
 
         if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -92,7 +92,7 @@ document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
 
     function stopCarousel() {
         clearTimeout(expandTimeoutId);
-        carousel.classList.remove('is-expanded');
+        projectCard.classList.remove('is-expanded');
         clearInterval(intervalId);
         intervalId = undefined;
     }
