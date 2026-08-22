@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sravan's Admin Dashboard | Portfolio Tracker</title>
+    <title>Sravan's Workspace Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Modern Glassmorphic Admin Dashboard */
         .admin-body {
-            background-color: var(--bg-primary);
+            background-color: #030303;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(201, 168, 106, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(143, 111, 63, 0.03) 0px, transparent 50%);
             color: var(--text-primary);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             min-height: 100vh;
@@ -15,43 +19,49 @@
         }
 
         .admin-container {
-            max-width: 1200px;
-            margin: 80px auto 0;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 1300px;
+            margin: 60px auto 0;
+            background: rgba(13, 13, 13, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
 
         .admin-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-soft);
-            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 25px;
             margin-bottom: 30px;
         }
 
         .admin-header h1 {
             font-size: 28px;
             font-weight: 700;
-            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
         }
 
         .auth-card {
-            max-width: 400px;
-            margin: 150px auto 0;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
+            max-width: 420px;
+            margin: 120px auto 0;
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(201, 168, 106, 0.1);
             padding: 40px;
-            border-radius: 6px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
         }
 
         .auth-card h2 {
             margin-bottom: 25px;
+            font-weight: 700;
             letter-spacing: 1px;
             color: var(--accent-light);
         }
@@ -63,8 +73,8 @@
 
         .form-group label {
             display: block;
-            font-size: 12px;
-            color: var(--text-secondary);
+            font-size: 11px;
+            color: var(--text-muted);
             margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -72,185 +82,349 @@
 
         .form-control {
             width: 100%;
-            padding: 12px;
-            background: var(--bg-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
+            padding: 12px 16px;
+            background: rgba(8, 8, 8, 0.6);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
             color: var(--text-primary);
             font-size: 14px;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--accent);
+            background: rgba(12, 12, 12, 0.8);
+            box-shadow: 0 0 10px rgba(201, 168, 106, 0.1);
         }
 
-        /* Tabs styling */
+        /* Modern Dashboard Navigation Tabs */
         .dashboard-tabs {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-soft);
-            padding-bottom: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 6px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.03);
+            width: fit-content;
         }
 
         .tab-btn {
             background: transparent;
-            border: 1px solid transparent;
+            border: none;
             color: var(--text-secondary);
-            padding: 10px 20px;
+            padding: 10px 24px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            transition: all 0.25s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .tab-btn.active {
-            border-color: var(--accent);
-            color: var(--accent-light);
-            background: rgba(201, 168, 106, 0.05);
-        }
-
-        .tab-btn:hover:not(.active) {
-            color: var(--text-primary);
-            background: var(--surface-hover);
+            color: #080808;
+            background: var(--accent-light);
+            box-shadow: 0 4px 15px rgba(201, 168, 106, 0.25);
         }
 
         .tab-pane {
             display: none;
+            animation: fadeIn 0.4s ease;
         }
 
         .tab-pane.active {
             display: block;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .stat-card {
-            background: var(--bg-tertiary);
+        /* Analytics Bar Funnel */
+        .analytics-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
             padding: 20px;
-            border-radius: 4px;
-            border-left: 3px solid var(--accent);
-            text-align: center;
+            margin-bottom: 35px;
         }
 
-        .stat-card h3 {
-            font-size: 11px;
-            color: var(--text-muted);
+        .analytics-title {
+            font-size: 13px;
+            color: var(--accent-light);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .stat-card p {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .add-tracker-section {
-            background: var(--bg-tertiary);
-            padding: 20px;
-            border-radius: 4px;
-            border: 1px solid var(--border-soft);
-            margin-bottom: 30px;
-        }
-
-        .add-tracker-section h3 {
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: var(--accent-light);
-        }
-
-        .tracker-form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
             margin-bottom: 15px;
         }
 
-        .table-responsive {
-            overflow-x: auto;
-            margin-top: 20px;
-            border: 1px solid var(--border-color);
+        .funnel-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.05);
             border-radius: 4px;
+            display: flex;
+            overflow: hidden;
+            margin-bottom: 12px;
         }
 
-        .tracker-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 13px;
+        .funnel-segment {
+            height: 100%;
+            transition: width 0.5s ease;
         }
 
-        .tracker-table th, 
-        .tracker-table td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border-soft);
+        .funnel-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 12px;
         }
 
-        .tracker-table th {
-            background: var(--bg-tertiary);
-            color: var(--accent-light);
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* KANBAN BOARD SYSTEM */
+        .kanban-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+            align-items: start;
+        }
+
+        .kanban-column {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 400px;
+            transition: all 0.3s ease;
+        }
+
+        .kanban-column.drag-over {
+            background: rgba(201, 168, 106, 0.04);
+            border-color: rgba(201, 168, 106, 0.2);
+        }
+
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .column-header h3 {
+            font-size: 12px;
+            font-weight: 700;
             text-transform: uppercase;
-            font-size: 11px;
             letter-spacing: 1px;
         }
 
-        .tracker-table tr:hover td {
-            background: var(--surface-hover);
-        }
-
-        .status-badge {
-            padding: 4px 10px;
-            border-radius: 20px;
+        .column-badge {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
             font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-block;
         }
 
-        .status-applied { background: rgba(201, 168, 106, 0.15); color: var(--accent-light); border: 1px solid rgba(201,168,106,0.3); }
-        .status-interviewing { background: rgba(52, 152, 219, 0.15); color: #5dade2; border: 1px solid rgba(52, 152, 219, 0.3); }
-        .status-offered { background: rgba(46, 204, 113, 0.15); color: #58d68d; border: 1px solid rgba(46, 204, 113, 0.3); }
-        .status-rejected { background: rgba(231, 76, 60, 0.15); color: #f1948a; border: 1px solid rgba(231, 76, 60, 0.3); }
+        .kanban-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 350px;
+        }
 
-        /* Dynamic Status Edit dropdown */
-        .status-select-edit {
-            background: var(--bg-dark);
-            border: 1px solid var(--border-color);
+        .kanban-card {
+            background: rgba(30, 30, 30, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 16px;
+            cursor: grab;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .kanban-card:active {
+            cursor: grabbing;
+        }
+
+        .kanban-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(201, 168, 106, 0.25);
+            background: rgba(30, 30, 30, 0.7);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .card-company {
+            font-size: 14px;
+            font-weight: 700;
             color: var(--text-primary);
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
+            margin-bottom: 4px;
         }
+
+        .card-role {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+
+        .card-package {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .card-delete {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 14px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+        }
+
+        .card-delete:hover {
+            color: #f1948a;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        /* MODERN CHECKLIST TASKS */
+        .task-list-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .task-row {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 6px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .task-row:hover {
+            border-color: rgba(201, 168, 106, 0.15);
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .task-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Custom Checkbox */
+        .chk-container {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+        }
+
+        .chk-container.completed {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .chk-container.completed::after {
+            content: '✓';
+            color: #080808;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .task-text {
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .task-text.completed {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .task-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .task-deadline-badge {
+            font-size: 11px;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        /* Color profiles */
+        .color-applied { color: #f0d9a0; }
+        .color-interviewing { color: #5dade2; }
+        .color-offered { color: #58d68d; }
+        .color-rejected { color: #e74c3c; }
+
+        .bg-applied { background: #f0d9a0; }
+        .bg-interviewing { background: #5dade2; }
+        .bg-offered { background: #58d68d; }
+        .bg-rejected { background: #e74c3c; }
 
         .btn-sm {
-            padding: 6px 12px;
+            padding: 8px 16px;
+            border-radius: 4px;
             font-size: 11px;
-            text-transform: none;
             letter-spacing: 0.5px;
         }
 
-        .btn-danger {
-            background: rgba(231, 76, 60, 0.2);
-            color: #f1948a;
-            border: 1px solid rgba(231, 76, 60, 0.4);
-        }
-
-        .btn-danger:hover {
-            background: rgba(231, 76, 60, 0.4);
+        /* Responsive */
+        @media(max-width: 991px) {
+            .kanban-board {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .kanban-column {
+                min-height: auto;
+            }
+            .kanban-cards {
+                min-height: auto;
+            }
         }
     </style>
 </head>
@@ -273,57 +447,53 @@
         </form>
     </div>
 
-    <!-- MAIN TRACKER DASHBOARD -->
+    <!-- MAIN DASHBOARD -->
     <div id="dashboard-container" class="admin-container" style="display: none;">
         <div class="admin-header">
             <div>
                 <h1>Sravan's Workspace Dashboard</h1>
-                <p style="color: var(--text-muted); font-size: 13px;">Manage applications, task trackers and personal projects</p>
+                <p style="color: var(--text-muted); font-size: 13px;">Kanban boards and personal progress metrics</p>
             </div>
             <button id="logout-btn" class="btn btn-secondary">Logout</button>
         </div>
 
         <!-- TABS NAV -->
         <div class="dashboard-tabs">
-            <button class="tab-btn active" onclick="switchTab('apps-tab')">Jobs &amp; Internships</button>
-            <button class="tab-btn" onclick="switchTab('tasks-tab')">Tasks &amp; Projects</button>
+            <button id="btn-apps-tab" class="tab-btn active" onclick="switchTab('apps-tab')">Kanban Board</button>
+            <button id="btn-tasks-tab" class="tab-btn" onclick="switchTab('tasks-tab')">Task List</button>
         </div>
 
-        <!-- TAB 1: JOBS & INTERNSHIPS -->
+        <!-- TAB 1: APPLICATIONS KANBAN -->
         <div id="apps-tab" class="tab-pane active">
-            <!-- STATS BLOCK -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total Opportunities</h3>
-                    <p id="stat-total-apps">0</p>
+            <!-- FUNNEL ANALYTICS -->
+            <div class="analytics-container">
+                <div class="analytics-title">Application Pipeline Funnel</div>
+                <div class="funnel-bar">
+                    <div id="funnel-applied" class="funnel-segment bg-applied" style="width: 0%;"></div>
+                    <div id="funnel-interviewing" class="funnel-segment bg-interviewing" style="width: 0%;"></div>
+                    <div id="funnel-offered" class="funnel-segment bg-offered" style="width: 0%;"></div>
+                    <div id="funnel-rejected" class="funnel-segment bg-rejected" style="width: 0%;"></div>
                 </div>
-                <div class="stat-card">
-                    <h3>Jobs</h3>
-                    <p id="stat-jobs">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Internships</h3>
-                    <p id="stat-internships">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Interviewing</h3>
-                    <p id="stat-interviewing-apps">0</p>
+                <div class="funnel-legend">
+                    <div class="legend-item"><span class="legend-dot bg-applied"></span> Applied (<span id="count-applied">0</span>)</div>
+                    <div class="legend-item"><span class="legend-dot bg-interviewing"></span> Interviewing (<span id="count-interviewing">0</span>)</div>
+                    <div class="legend-item"><span class="legend-dot bg-offered"></span> Offered (<span id="count-offered">0</span>)</div>
+                    <div class="legend-item"><span class="legend-dot bg-rejected"></span> Rejected (<span id="count-rejected">0</span>)</div>
                 </div>
             </div>
 
-            <!-- ADD NEW LOG FORM (JOBS & INTERNSHIPS) -->
+            <!-- ADD APPLICATION FORM -->
             <div class="add-tracker-section">
-                <h3>+ Log New Application</h3>
+                <h3>+ Quick Add Application</h3>
                 <form id="app-form">
-                    <input type="hidden" id="app-edit-id">
                     <div class="tracker-form-row">
                         <div class="form-group">
-                            <label for="app-company">Company Name</label>
-                            <input type="text" id="app-company" class="form-control" placeholder="Google, Unstop, etc." required>
+                            <label for="app-company">Company</label>
+                            <input type="text" id="app-company" class="form-control" placeholder="Tesla, Microsoft" required>
                         </div>
                         <div class="form-group">
-                            <label for="app-role">Role / Position</label>
-                            <input type="text" id="app-role" class="form-control" placeholder="AI Dev, Python Intern" required>
+                            <label for="app-role">Role</label>
+                            <input type="text" id="app-role" class="form-control" placeholder="Python Engineer" required>
                         </div>
                         <div class="form-group">
                             <label for="app-type">Type</label>
@@ -333,102 +503,73 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="app-package">Compensation / Package</label>
-                            <input type="text" id="app-package" class="form-control" placeholder="e.g. 12 LPA, 25k/mo">
-                        </div>
-                        <div class="form-group">
-                            <label for="app-status">Status</label>
-                            <select id="app-status" class="form-control">
-                                <option value="Applied">Applied</option>
-                                <option value="Interviewing">Interviewing</option>
-                                <option value="Offered">Offered</option>
-                                <option value="Rejected">Rejected</option>
-                            </select>
+                            <label for="app-package">Package</label>
+                            <input type="text" id="app-package" class="form-control" placeholder="e.g. 15 LPA">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-sm">Add Application</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Add Card</button>
                 </form>
             </div>
 
-            <h2>Application Ledger</h2>
-            <div class="table-responsive">
-                <table class="tracker-table">
-                    <thead>
-                        <tr>
-                            <th>Company</th>
-                            <th>Role / Position</th>
-                            <th>Type</th>
-                            <th>Compensation</th>
-                            <th>Status (Change Live)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="app-tbody">
-                        <!-- Dynamic entries appended here -->
-                    </tbody>
-                </table>
+            <!-- KANBAN COLUMNS -->
+            <div class="kanban-board">
+                <!-- Applied -->
+                <div class="kanban-column" ondragover="allowDrop(event)" ondrop="drop(event, 'Applied')">
+                    <div class="column-header">
+                        <h3 class="color-applied">Applied</h3>
+                        <span id="badge-applied" class="column-badge">0</span>
+                    </div>
+                    <div id="cards-Applied" class="kanban-cards"></div>
+                </div>
+                <!-- Interviewing -->
+                <div class="kanban-column" ondragover="allowDrop(event)" ondrop="drop(event, 'Interviewing')">
+                    <div class="column-header">
+                        <h3 class="color-interviewing">Interviewing</h3>
+                        <span id="badge-interviewing" class="column-badge">0</span>
+                    </div>
+                    <div id="cards-Interviewing" class="kanban-cards"></div>
+                </div>
+                <!-- Offered -->
+                <div class="kanban-column" ondragover="allowDrop(event)" ondrop="drop(event, 'Offered')">
+                    <div class="column-header">
+                        <h3 class="color-offered">Offered</h3>
+                        <span id="badge-offered" class="column-badge">0</span>
+                    </div>
+                    <div id="cards-Offered" class="kanban-cards"></div>
+                </div>
+                <!-- Rejected -->
+                <div class="kanban-column" ondragover="allowDrop(event)" ondrop="drop(event, 'Rejected')">
+                    <div class="column-header">
+                        <h3 class="color-rejected">Rejected</h3>
+                        <span id="badge-rejected" class="column-badge">0</span>
+                    </div>
+                    <div id="cards-Rejected" class="kanban-cards"></div>
+                </div>
             </div>
         </div>
 
-        <!-- TAB 2: TASKS & PROJECTS -->
+        <!-- TAB 2: TASKS CHECKLIST -->
         <div id="tasks-tab" class="tab-pane">
-            <!-- STATS BLOCK -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total Tasks</h3>
-                    <p id="stat-total-tasks">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Pending</h3>
-                    <p id="stat-tasks-pending">0</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Completed</h3>
-                    <p id="stat-tasks-completed">0</p>
-                </div>
-            </div>
-
-            <!-- ADD NEW TASK FORM -->
             <div class="add-tracker-section">
-                <h3>+ Log New Task / Project Tracker</h3>
+                <h3>+ Log New Task</h3>
                 <form id="task-form">
                     <div class="tracker-form-row">
                         <div class="form-group" style="grid-column: span 2;">
-                            <label for="task-name">Task Description / Project Name</label>
-                            <input type="text" id="task-name" class="form-control" placeholder="Finish CodeRefine backend, optimize image files, etc." required>
+                            <label for="task-name">Task Details</label>
+                            <input type="text" id="task-name" class="form-control" placeholder="Finish building portfolio admin board" required>
                         </div>
                         <div class="form-group">
-                            <label for="task-deadline">Deadline</label>
+                            <label for="task-deadline">Target Deadline</label>
                             <input type="date" id="task-deadline" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label for="task-status">Status</label>
-                            <select id="task-status" class="form-control">
-                                <option value="Pending">Pending</option>
-                                <option value="In Progress">In Progress</option>
-                                <option value="Completed">Completed</option>
-                            </select>
-                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-sm">Log Task</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Create Task</button>
                 </form>
             </div>
 
-            <h2>Task List</h2>
-            <div class="table-responsive">
-                <table class="tracker-table">
-                    <thead>
-                        <tr>
-                            <th>Task Details</th>
-                            <th>Target Deadline</th>
-                            <th>Status (Change Live)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="task-tbody">
-                        <!-- Dynamic entries appended here -->
-                    </tbody>
-                </table>
+            <h2>Checklist Timeline</h2>
+            <div id="task-list-container" class="task-list-wrapper">
+                <!-- Dynamic task rows go here -->
             </div>
         </div>
     </div>
@@ -446,11 +587,9 @@
         const logoutBtn = document.getElementById('logout-btn');
 
         const appForm = document.getElementById('app-form');
-        const appTbody = document.getElementById('app-tbody');
         const taskForm = document.getElementById('task-form');
-        const taskTbody = document.getElementById('task-tbody');
 
-        // Check active session status
+        // Authentication checks
         if (sessionStorage.getItem('admin-logged-in') === 'true') {
             showDashboard();
         }
@@ -477,47 +616,47 @@
         function showDashboard() {
             loginContainer.style.display = 'none';
             dashboardContainer.style.display = 'block';
-            renderAllData();
+            renderAll();
         }
 
-        // Tab Switching
+        // Switch Tabs
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             
             document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            if(tabId === 'apps-tab') document.getElementById('btn-apps-tab').classList.add('active');
+            if(tabId === 'tasks-tab') document.getElementById('btn-tasks-tab').classList.add('active');
         };
 
-        // Data Storage & Retrieval
-        function getAppsData() {
-            const data = localStorage.getItem(STORAGE_APPS_KEY);
-            return data ? JSON.parse(data) : [];
+        // Storage helpers
+        function getApps() {
+            const val = localStorage.getItem(STORAGE_APPS_KEY);
+            return val ? JSON.parse(val) : [];
         }
 
-        function saveAppsData(data) {
+        function saveApps(data) {
             localStorage.setItem(STORAGE_APPS_KEY, JSON.stringify(data));
-            renderAppsData();
+            renderApps();
         }
 
-        function getTasksData() {
-            const data = localStorage.getItem(STORAGE_TASKS_KEY);
-            return data ? JSON.parse(data) : [];
+        function getTasks() {
+            const val = localStorage.getItem(STORAGE_TASKS_KEY);
+            return val ? JSON.parse(val) : [];
         }
 
-        function saveTasksData(data) {
+        function saveTasks(data) {
             localStorage.setItem(STORAGE_TASKS_KEY, JSON.stringify(data));
-            renderTasksData();
+            renderTasks();
         }
 
-        // Add App Opportunity
+        // Add application
         appForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const company = document.getElementById('app-company').value;
             const role = document.getElementById('app-role').value;
             const type = document.getElementById('app-type').value;
             const packageVal = document.getElementById('app-package').value || 'N/A';
-            const status = document.getElementById('app-status').value;
 
             const newApp = {
                 id: Date.now(),
@@ -525,144 +664,170 @@
                 role: role,
                 type: type,
                 package: packageVal,
-                status: status
+                status: 'Applied'
             };
 
-            const data = getAppsData();
-            data.push(newApp);
-            saveAppsData(data);
+            const list = getApps();
+            list.push(newApp);
+            saveApps(list);
             appForm.reset();
         });
 
-        // Add Task Tracker
+        // Add task
         taskForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('task-name').value;
             const deadline = document.getElementById('task-deadline').value || 'No Target';
-            const status = document.getElementById('task-status').value;
 
             const newTask = {
                 id: Date.now(),
                 name: name,
                 deadline: deadline,
-                status: status
+                completed: false
             };
 
-            const data = getTasksData();
-            data.push(newTask);
-            saveTasksData(data);
+            const list = getTasks();
+            list.push(newTask);
+            saveTasks(list);
             taskForm.reset();
         });
 
-        // Update Live Status Change (Apps)
-        window.updateAppStatus = function(id, selectElement) {
-            const data = getAppsData();
-            const item = data.find(i => i.id === id);
-            if (item) {
-                item.status = selectElement.value;
-                saveAppsData(data);
+        // Drag & Drop handlers
+        window.allowDrop = function(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('drag-over');
+        };
+
+        window.drag = function(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        };
+
+        window.drop = function(ev, targetStatus) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('drag-over');
+            const cardId = ev.dataTransfer.getData("text");
+            const dbId = parseInt(cardId.split('-')[1]);
+            
+            const data = getApps();
+            const card = data.find(i => i.id === dbId);
+            if (card) {
+                card.status = targetStatus;
+                saveApps(data);
             }
         };
 
-        // Update Live Status Change (Tasks)
-        window.updateTaskStatus = function(id, selectElement) {
-            const data = getTasksData();
-            const item = data.find(i => i.id === id);
-            if (item) {
-                item.status = selectElement.value;
-                saveTasksData(data);
-            }
-        };
+        document.querySelectorAll('.kanban-column').forEach(function(col) {
+            col.addEventListener('dragleave', function() {
+                col.classList.remove('drag-over');
+            });
+        });
 
         // Delete handlers
         window.deleteApp = function(id) {
-            let data = getAppsData();
+            let data = getApps();
             data = data.filter(item => item.id !== id);
-            saveAppsData(data);
+            saveApps(data);
         };
 
         window.deleteTask = function(id) {
-            let data = getTasksData();
+            let data = getTasks();
             data = data.filter(item => item.id !== id);
-            saveTasksData(data);
+            saveTasks(data);
         };
 
-        // Renderers
-        function renderAllData() {
-            renderAppsData();
-            renderTasksData();
+        window.toggleTask = function(id) {
+            const data = getTasks();
+            const item = data.find(i => i.id === id);
+            if (item) {
+                item.completed = !item.completed;
+                saveTasks(data);
+            }
+        };
+
+        // Visual render scripts
+        function renderAll() {
+            renderApps();
+            renderTasks();
         }
 
-        function renderAppsData() {
-            const data = getAppsData();
-            appTbody.innerHTML = '';
+        function renderApps() {
+            const data = getApps();
+            
+            // Clear column card containers
+            document.getElementById('cards-Applied').innerHTML = '';
+            document.getElementById('cards-Interviewing').innerHTML = '';
+            document.getElementById('cards-Offered').innerHTML = '';
+            document.getElementById('cards-Rejected').innerHTML = '';
 
-            let totalCount = data.length;
-            let jobsCount = 0;
-            let internshipsCount = 0;
-            let interviewingCount = 0;
+            let countMap = { Applied: 0, Interviewing: 0, Offered: 0, Rejected: 0 };
 
             data.forEach(function(item) {
-                if (item.type === 'Job') jobsCount++;
-                if (item.type === 'Internship') internshipsCount++;
-                if (item.status === 'Interviewing') interviewingCount++;
+                countMap[item.status]++;
+                
+                const card = document.createElement('div');
+                card.className = 'kanban-card';
+                card.id = `card-${item.id}`;
+                card.draggable = true;
+                card.addEventListener('dragstart', drag);
 
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="font-weight: 600; color: var(--text-primary);">${item.company}</td>
-                    <td>${item.role}</td>
-                    <td>${item.type}</td>
-                    <td style="color: var(--accent-light);">${item.package}</td>
-                    <td>
-                        <select class="status-select-edit" onchange="updateAppStatus(${item.id}, this)">
-                            <option value="Applied" ${item.status === 'Applied' ? 'selected' : ''}>Applied</option>
-                            <option value="Interviewing" ${item.status === 'Interviewing' ? 'selected' : ''}>Interviewing</option>
-                            <option value="Offered" ${item.status === 'Offered' ? 'selected' : ''}>Offered</option>
-                            <option value="Rejected" ${item.status === 'Rejected' ? 'selected' : ''}>Rejected</option>
-                        </select>
-                    </td>
-                    <td><button onclick="deleteApp(${item.id})" class="btn btn-danger btn-sm">Delete</button></td>
+                card.innerHTML = `
+                    <div class="card-company">${item.company}</div>
+                    <div class="card-role">${item.role} • ${item.type}</div>
+                    <div class="card-meta">
+                        <span class="card-package">${item.package}</span>
+                        <button onclick="deleteApp(${item.id})" class="card-delete" title="Delete record">✕</button>
+                    </div>
                 `;
-                appTbody.appendChild(tr);
+                
+                const container = document.getElementById(`cards-${item.status}`);
+                if (container) {
+                    container.appendChild(card);
+                }
             });
 
-            document.getElementById('stat-total-apps').textContent = totalCount;
-            document.getElementById('stat-jobs').textContent = jobsCount;
-            document.getElementById('stat-internships').textContent = internshipsCount;
-            document.getElementById('stat-interviewing-apps').textContent = interviewingCount;
+            // Update badges
+            for (let status in countMap) {
+                document.getElementById(`badge-${status.toLowerCase()}`).textContent = countMap[status];
+                document.getElementById(`count-${status.toLowerCase()}`).textContent = countMap[status];
+            }
+
+            // Calculate funnel percentage
+            const total = data.length || 1;
+            document.getElementById('funnel-applied').style.width = ((countMap.Applied / total) * 100) + '%';
+            document.getElementById('funnel-interviewing').style.width = ((countMap.Interviewing / total) * 100) + '%';
+            document.getElementById('funnel-offered').style.width = ((countMap.Offered / total) * 100) + '%';
+            document.getElementById('funnel-rejected').style.width = ((countMap.Rejected / total) * 100) + '%';
         }
 
-        function renderTasksData() {
-            const data = getTasksData();
-            taskTbody.innerHTML = '';
+        function renderTasks() {
+            const data = getTasks();
+            const container = document.getElementById('task-list-container');
+            container.innerHTML = '';
 
-            let totalCount = data.length;
-            let pendingCount = 0;
-            let completedCount = 0;
+            let completed = 0;
 
             data.forEach(function(item) {
-                if (item.status === 'Completed') completedCount++;
-                else pendingCount++;
+                if (item.completed) completed++;
 
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="font-weight: 500; color: var(--text-primary);">${item.name}</td>
-                    <td>${item.deadline}</td>
-                    <td>
-                        <select class="status-select-edit" onchange="updateTaskStatus(${item.id}, this)">
-                            <option value="Pending" ${item.status === 'Pending' ? 'selected' : ''}>Pending</option>
-                            <option value="In Progress" ${item.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
-                            <option value="Completed" ${item.status === 'Completed' ? 'selected' : ''}>Completed</option>
-                        </select>
-                    </td>
-                    <td><button onclick="deleteTask(${item.id})" class="btn btn-danger btn-sm">Delete</button></td>
+                const row = document.createElement('div');
+                row.className = 'task-row';
+
+                row.innerHTML = `
+                    <div class="task-left">
+                        <div class="chk-container ${item.completed ? 'completed' : ''}" onclick="toggleTask(${item.id})"></div>
+                        <span class="task-text ${item.completed ? 'completed' : ''}">${item.name}</span>
+                    </div>
+                    <div class="task-right">
+                        <span class="task-deadline-badge">Due: ${item.deadline}</span>
+                        <button onclick="deleteTask(${item.id})" class="card-delete" title="Delete Task">✕</button>
+                    </div>
                 `;
-                taskTbody.appendChild(tr);
+                container.appendChild(row);
             });
 
-            document.getElementById('stat-total-tasks').textContent = totalCount;
-            document.getElementById('stat-tasks-pending').textContent = pendingCount;
-            document.getElementById('stat-tasks-completed').textContent = completedCount;
+            document.getElementById('stat-total-tasks').textContent = data.length;
+            document.getElementById('stat-tasks-completed').textContent = completed;
+            document.getElementById('stat-tasks-pending').textContent = data.length - completed;
         }
     </script>
 </body>
