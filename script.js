@@ -56,6 +56,53 @@ const observer = new IntersectionObserver(function(entries) {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+// Slowly cycle through project screenshots while a recruiter explores a card.
+document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
+    const track = carousel.querySelector('.portfolio-track');
+    const slides = track ? track.children : [];
+    const projectCard = carousel.closest('.portfolio-item') || carousel;
+    let currentSlide = 0;
+    let intervalId;
+    let expandTimeoutId;
+
+    if (!track) {
+        return;
+    }
+
+    if (slides.length > 1) {
+        carousel.classList.add('has-slides');
+    }
+
+    function showNextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    function startCarousel() {
+        expandTimeoutId = window.setTimeout(function() {
+            carousel.classList.add('is-expanded');
+        }, 350);
+
+        if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+        clearInterval(intervalId);
+        intervalId = window.setInterval(showNextSlide, 5000);
+    }
+
+    function stopCarousel() {
+        clearTimeout(expandTimeoutId);
+        carousel.classList.remove('is-expanded');
+        clearInterval(intervalId);
+        intervalId = undefined;
+    }
+
+    projectCard.addEventListener('mouseenter', startCarousel);
+    projectCard.addEventListener('mouseleave', stopCarousel);
+    projectCard.addEventListener('focusin', startCarousel);
+    projectCard.addEventListener('focusout', stopCarousel);
+});
+
 // Active navigation link on scroll
 window.addEventListener('scroll', function() {
     let current = '';

@@ -448,9 +448,23 @@ button:disabled:hover {
     box-shadow: 0 0 20px rgba(201, 168, 106, 0.12), 0 0 45px rgba(201, 168, 106, 0.05);
 }
 
-.portfolio-image {
-    width: 100%;
+.portfolio-media {
     height: 280px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+}
+
+.portfolio-track {
+    display: flex;
+    height: 100%;
+    transition: transform 1.4s ease-in-out;
+}
+
+.portfolio-image {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
     display: flex;
@@ -458,12 +472,54 @@ button:disabled:hover {
     justify-content: center;
     font-size: 14px;
     color: var(--text-muted);
-    overflow: hidden;
-    transition: all 0.4s ease;
+    transition: transform 2.2s ease;
 }
 
-.portfolio-item:hover .portfolio-image {
+.portfolio-item:hover .portfolio-media {
     background: linear-gradient(135deg, var(--surface-elevated) 0%, rgba(201, 168, 106, 0.06) 100%);
+}
+
+.portfolio-item:hover .portfolio-image,
+.portfolio-item:focus-within .portfolio-image {
+    transform: scale(1.04);
+}
+
+.portfolio-media::after {
+    content: 'Hover to explore';
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    padding: 5px 8px;
+    background: rgba(13, 13, 13, 0.72);
+    color: var(--text-secondary);
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.portfolio-media.has-slides::after,
+.portfolio-item:hover .portfolio-media.has-slides::after,
+.portfolio-item:focus-within .portfolio-media.has-slides::after {
+    opacity: 1;
+}
+
+.portfolio-media.is-expanded {
+    position: fixed;
+    top: 6vh;
+    left: 6vw;
+    width: 88vw;
+    height: 88vh;
+    z-index: 1100;
+    border: 1px solid var(--accent);
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7), 0 0 0 100vmax rgba(13, 13, 13, 0.82);
+}
+
+.portfolio-media.is-expanded .portfolio-image {
+    object-fit: contain;
+    background: var(--bg-primary);
+    transform: scale(1.02);
 }
 
 .portfolio-content {
@@ -898,7 +954,7 @@ footer {
         gap: 28px;
     }
 
-    .portfolio-image {
+    .portfolio-media {
         height: 220px;
     }
 
@@ -1070,8 +1126,15 @@ footer {
         padding: 7px 11px;
     }
 
-    .portfolio-image {
+    .portfolio-media {
         height: 170px;
+    }
+
+    .portfolio-media.is-expanded {
+        top: 8vh;
+        left: 4vw;
+        width: 92vw;
+        height: 84vh;
     }
 
     .portfolio-content h3 {
