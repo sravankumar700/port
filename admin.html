@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sravan's Admin Dashboard | Portfolio Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Dashboards-specific styles built on top of the current design system */
+        .admin-body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-soft);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .admin-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .auth-card {
+            max-width: 400px;
+            margin: 150px auto 0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            text-align: center;
+        }
+
+        .auth-card h2 {
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            color: var(--accent-light);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Modal / Form section styling */
+        .add-tracker-section {
+            background: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid var(--border-soft);
+            margin-bottom: 30px;
+        }
+
+        .add-tracker-section h3 {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: var(--accent-light);
+        }
+
+        .tracker-form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Table custom styling */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .tracker-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        .tracker-table th, 
+        .tracker-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .tracker-table th {
+            background: var(--bg-tertiary);
+            color: var(--accent-light);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .tracker-table tr:hover td {
+            background: var(--surface-hover);
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .status-applied { background: rgba(201, 168, 106, 0.15); color: var(--accent-light); border: 1px solid rgba(201,168,106,0.3); }
+        .status-interviewing { background: rgba(52, 152, 219, 0.15); color: #5dade2; border: 1px solid rgba(52, 152, 219, 0.3); }
+        .status-offered { background: rgba(46, 204, 113, 0.15); color: #58d68d; border: 1px solid rgba(46, 204, 113, 0.3); }
+        .status-rejected { background: rgba(231, 76, 60, 0.15); color: #f1948a; border: 1px solid rgba(231, 76, 60, 0.3); }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 11px;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-danger {
+            background: rgba(231, 76, 60, 0.2);
+            color: #f1948a;
+            border: 1px solid rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-danger:hover {
+            background: rgba(231, 76, 60, 0.4);
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <!-- LOGIN CARD -->
+    <div id="login-container" class="auth-card">
+        <h2>Admin Authentication</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="password">Enter Password</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Login</button>
+            <p id="login-error" style="color: #f1948a; font-size: 12px; margin-top: 15px; display: none;">Incorrect password. Please try again.</p>
+        </form>
+    </div>
+
+    <!-- MAIN TRACKER DASHBOARD -->
+    <div id="dashboard-container" class="admin-container" style="display: none;">
+        <div class="admin-header">
+            <div>
+                <h1>Sravan's Progress Tracker</h1>
+                <p style="color: var(--text-muted); font-size: 13px;">Manage applied roles, tasks, internships, and opportunities</p>
+            </div>
+            <button id="logout-btn" class="btn btn-secondary">Logout</button>
+        </div>
+
+        <!-- STATS BLOCK -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Applied</h3>
+                <p id="stat-total">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Jobs Applied</h3>
+                <p id="stat-jobs">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Internships</h3>
+                <p id="stat-internships">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Interviewing</h3>
+                <p id="stat-interviewing">0</p>
+            </div>
+        </div>
+
+        <!-- ADD NEW LOG FORM -->
+        <div class="add-tracker-section">
+            <h3>+ Log New Opportunity / Task</h3>
+            <form id="tracker-form">
+                <div class="tracker-form-row">
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" class="form-control" placeholder="Google, Unstop, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role / Position</label>
+                        <input type="text" id="role" class="form-control" placeholder="AI Dev, Python Intern" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Category Type</label>
+                        <select id="type" class="form-control">
+                            <option value="Job">Job</option>
+                            <option value="Internship">Internship</option>
+                            <option value="Task/Project">Task/Project</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Compensation / Package</label>
+                        <input type="text" id="package" class="form-control" placeholder="e.g. 12 LPA, 25k/mo, unpaid">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Current Status</label>
+                        <select id="status" class="form-control">
+                            <option value="Applied">Applied</option>
+                            <option value="Interviewing">Interviewing</option>
+                            <option value="Offered">Offered</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Add Opportunity</button>
+            </form>
+        </div>
+
+        <!-- OPPORTUNITY TABLE -->
+        <h2>Applied Opportunities</h2>
+        <div class="table-responsive">
+            <table class="tracker-table">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Role / Position</th>
+                        <th>Type</th>
+                        <th>Compensation</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tracker-tbody">
+                    <!-- Dynamic entries appended here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Simple client-side authorization bypass/storage (Change 'admin123' if desired)
+        const ADMIN_HASH = 'admin123';
+        const STORAGE_KEY = 'sravan-portfolio-tracker-data';
+
+        const loginContainer = document.getElementById('login-container');
+        const dashboardContainer = document.getElementById('dashboard-container');
+        const loginForm = document.getElementById('login-form');
+        const passwordInput = document.getElementById('password');
+        const loginError = document.getElementById('login-error');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        const trackerForm = document.getElementById('tracker-form');
+        const trackerTbody = document.getElementById('tracker-tbody');
+
+        // Check active session status
+        if (sessionStorage.getItem('admin-logged-in') === 'true') {
+            showDashboard();
+        }
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (passwordInput.value === ADMIN_HASH) {
+                sessionStorage.setItem('admin-logged-in', 'true');
+                loginError.style.display = 'none';
+                passwordInput.value = '';
+                showDashboard();
+            } else {
+                loginError.style.display = 'block';
+            }
+        });
+
+        logoutBtn.addEventListener('click', function() {
+            sessionStorage.removeItem('admin-logged-in');
+            dashboardContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+
+        function showDashboard() {
+            loginContainer.style.display = 'none';
+            dashboardContainer.style.display = 'block';
+            renderTrackerData();
+        }
+
+        // Data Storage & Retrieval
+        function getTrackerData() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveTrackerData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            renderTrackerData();
+        }
+
+        // Add handler
+        trackerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const company = document.getElementById('company').value;
+            const role = document.getElementById('role').value;
+            const type = document.getElementById('type').value;
+            const packageVal = document.getElementById('package').value || 'N/A';
+            const status = document.getElementById('status').value;
+
+            const newOpportunity = {
+                id: Date.now(),
+                company: company,
+                role: role,
+                type: type,
+                package: packageVal,
+                status: status
+            };
+
+            const currentData = getTrackerData();
+            currentData.push(newOpportunity);
+            saveTrackerData(currentData);
+
+            trackerForm.reset();
+        });
+
+        // Delete handler
+        window.deleteOpportunity = function(id) {
+            let data = getTrackerData();
+            data = data.filter(item => item.id !== id);
+            saveTrackerData(data);
+        };
+
+        // Render functions
+        function renderTrackerData() {
+            const data = getTrackerData();
+            trackerTbody.innerHTML = '';
+
+            let totalCount = data.length;
+            let jobsCount = 0;
+            let internshipsCount = 0;
+            let interviewingCount = 0;
+
+            data.forEach(function(item) {
+                // Tally stats
+                if (item.type === 'Job') jobsCount++;
+                if (item.type === 'Internship') internshipsCount++;
+                if (item.status === 'Interviewing') interviewingCount++;
+
+                // Build status badge
+                let statusClass = 'status-applied';
+                if (item.status === 'Interviewing') statusClass = 'status-interviewing';
+                if (item.status === 'Offered') statusClass = 'status-offered';
+                if (item.status === 'Rejected') statusClass = 'status-rejected';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-weight: 600; color: var(--text-primary);">${item.company}</td>
+                    <td>${item.role}</td>
+                    <td>${item.type}</td>
+                    <td style="color: var(--accent-light);">${item.package}</td>
+                    <td><span class="status-badge ${statusClass}">${item.status}</span></td>
+                    <td><button onclick="deleteOpportunity(${item.id})" class="btn btn-danger btn-sm">Delete</button></td>
+                `;
+                trackerTbody.appendChild(tr);
+            });
+
+            // Update stats indicators
+            document.getElementById('stat-total').textContent = totalCount;
+            document.getElementById('stat-jobs').textContent = jobsCount;
+            document.getElementById('stat-internships').textContent = internshipsCount;
+            document.getElementById('stat-interviewing').textContent = interviewingCount;
+        }
+    </script>
+</body>
+</html>

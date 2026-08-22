@@ -110,7 +110,7 @@ document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
             return;
         }
         clearInterval(intervalId);
-        intervalId = window.setInterval(showNextSlide, 4000);
+        intervalId = window.setInterval(showNextSlide, 2500);
     }
 
     function stopCarousel() {
