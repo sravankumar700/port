@@ -148,6 +148,55 @@ window.addEventListener('scroll', function() {
             link.style.color = 'var(--accent)';
         }
     });
+
+    // SCROLL PROGRESS BAR & BACK TO TOP BUTTON
+    const scrollProgress = document.getElementById('scroll-progress');
+    const backToTopBtn = document.getElementById('back-to-top');
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (totalHeight > 0) {
+        const progressPercent = (window.pageYOffset / totalHeight) * 100;
+        if (scrollProgress) {
+            scrollProgress.style.width = progressPercent + '%';
+        }
+    }
+
+    if (backToTopBtn) {
+        if (window.pageYOffset > 500) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    }
+});
+
+// Scroll to top functionality
+document.getElementById('back-to-top')?.addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Keyboard support for project flip cards
+document.querySelectorAll('.flip-card').forEach(function(card) {
+    card.addEventListener('keydown', function(e) {
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            const inner = card.querySelector('.flip-inner');
+            if (inner) {
+                const isFlipped = inner.style.transform === 'rotateY(180deg)';
+                inner.style.transform = isFlipped ? 'rotateY(0deg)' : 'rotateY(180deg)';
+                
+                // Trigger/stop carousel dynamically depending on state
+                const carousel = card.querySelector('[data-carousel]');
+                if (carousel) {
+                    const focusEvent = new Event(isFlipped ? 'focusout' : 'focusin');
+                    card.dispatchEvent(focusEvent);
+                }
+            }
+        }
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
