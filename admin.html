@@ -6,7 +6,6 @@
     <title>Sravan's Admin Dashboard | Portfolio Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Dashboards-specific styles built on top of the current design system */
         .admin-body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
@@ -87,6 +86,48 @@
             border-color: var(--accent);
         }
 
+        /* Tabs styling */
+        .dashboard-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-soft);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-btn.active {
+            border-color: var(--accent);
+            color: var(--accent-light);
+            background: rgba(201, 168, 106, 0.05);
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: var(--text-primary);
+            background: var(--surface-hover);
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -116,7 +157,6 @@
             color: var(--text-primary);
         }
 
-        /* Modal / Form section styling */
         .add-tracker-section {
             background: var(--bg-tertiary);
             padding: 20px;
@@ -138,7 +178,6 @@
             margin-bottom: 15px;
         }
 
-        /* Table custom styling */
         .table-responsive {
             overflow-x: auto;
             margin-top: 20px;
@@ -186,6 +225,17 @@
         .status-offered { background: rgba(46, 204, 113, 0.15); color: #58d68d; border: 1px solid rgba(46, 204, 113, 0.3); }
         .status-rejected { background: rgba(231, 76, 60, 0.15); color: #f1948a; border: 1px solid rgba(231, 76, 60, 0.3); }
 
+        /* Dynamic Status Edit dropdown */
+        .status-select-edit {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
         .btn-sm {
             padding: 6px 12px;
             font-size: 11px;
@@ -227,96 +277,165 @@
     <div id="dashboard-container" class="admin-container" style="display: none;">
         <div class="admin-header">
             <div>
-                <h1>Sravan's Progress Tracker</h1>
-                <p style="color: var(--text-muted); font-size: 13px;">Manage applied roles, tasks, internships, and opportunities</p>
+                <h1>Sravan's Workspace Dashboard</h1>
+                <p style="color: var(--text-muted); font-size: 13px;">Manage applications, task trackers and personal projects</p>
             </div>
             <button id="logout-btn" class="btn btn-secondary">Logout</button>
         </div>
 
-        <!-- STATS BLOCK -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Total Applied</h3>
-                <p id="stat-total">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Jobs Applied</h3>
-                <p id="stat-jobs">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Internships</h3>
-                <p id="stat-internships">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Interviewing</h3>
-                <p id="stat-interviewing">0</p>
-            </div>
+        <!-- TABS NAV -->
+        <div class="dashboard-tabs">
+            <button class="tab-btn active" onclick="switchTab('apps-tab')">Jobs &amp; Internships</button>
+            <button class="tab-btn" onclick="switchTab('tasks-tab')">Tasks &amp; Projects</button>
         </div>
 
-        <!-- ADD NEW LOG FORM -->
-        <div class="add-tracker-section">
-            <h3>+ Log New Opportunity / Task</h3>
-            <form id="tracker-form">
-                <div class="tracker-form-row">
-                    <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" class="form-control" placeholder="Google, Unstop, etc." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="role">Role / Position</label>
-                        <input type="text" id="role" class="form-control" placeholder="AI Dev, Python Intern" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="type">Category Type</label>
-                        <select id="type" class="form-control">
-                            <option value="Job">Job</option>
-                            <option value="Internship">Internship</option>
-                            <option value="Task/Project">Task/Project</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="package">Compensation / Package</label>
-                        <input type="text" id="package" class="form-control" placeholder="e.g. 12 LPA, 25k/mo, unpaid">
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Current Status</label>
-                        <select id="status" class="form-control">
-                            <option value="Applied">Applied</option>
-                            <option value="Interviewing">Interviewing</option>
-                            <option value="Offered">Offered</option>
-                            <option value="Rejected">Rejected</option>
-                        </select>
-                    </div>
+        <!-- TAB 1: JOBS & INTERNSHIPS -->
+        <div id="apps-tab" class="tab-pane active">
+            <!-- STATS BLOCK -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Opportunities</h3>
+                    <p id="stat-total-apps">0</p>
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm">Add Opportunity</button>
-            </form>
+                <div class="stat-card">
+                    <h3>Jobs</h3>
+                    <p id="stat-jobs">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Internships</h3>
+                    <p id="stat-internships">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Interviewing</h3>
+                    <p id="stat-interviewing-apps">0</p>
+                </div>
+            </div>
+
+            <!-- ADD NEW LOG FORM (JOBS & INTERNSHIPS) -->
+            <div class="add-tracker-section">
+                <h3>+ Log New Application</h3>
+                <form id="app-form">
+                    <input type="hidden" id="app-edit-id">
+                    <div class="tracker-form-row">
+                        <div class="form-group">
+                            <label for="app-company">Company Name</label>
+                            <input type="text" id="app-company" class="form-control" placeholder="Google, Unstop, etc." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="app-role">Role / Position</label>
+                            <input type="text" id="app-role" class="form-control" placeholder="AI Dev, Python Intern" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="app-type">Type</label>
+                            <select id="app-type" class="form-control">
+                                <option value="Job">Job</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="app-package">Compensation / Package</label>
+                            <input type="text" id="app-package" class="form-control" placeholder="e.g. 12 LPA, 25k/mo">
+                        </div>
+                        <div class="form-group">
+                            <label for="app-status">Status</label>
+                            <select id="app-status" class="form-control">
+                                <option value="Applied">Applied</option>
+                                <option value="Interviewing">Interviewing</option>
+                                <option value="Offered">Offered</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Add Application</button>
+                </form>
+            </div>
+
+            <h2>Application Ledger</h2>
+            <div class="table-responsive">
+                <table class="tracker-table">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Role / Position</th>
+                            <th>Type</th>
+                            <th>Compensation</th>
+                            <th>Status (Change Live)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="app-tbody">
+                        <!-- Dynamic entries appended here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <!-- OPPORTUNITY TABLE -->
-        <h2>Applied Opportunities</h2>
-        <div class="table-responsive">
-            <table class="tracker-table">
-                <thead>
-                    <tr>
-                        <th>Company</th>
-                        <th>Role / Position</th>
-                        <th>Type</th>
-                        <th>Compensation</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="tracker-tbody">
-                    <!-- Dynamic entries appended here -->
-                </tbody>
-            </table>
+        <!-- TAB 2: TASKS & PROJECTS -->
+        <div id="tasks-tab" class="tab-pane">
+            <!-- STATS BLOCK -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Tasks</h3>
+                    <p id="stat-total-tasks">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending</h3>
+                    <p id="stat-tasks-pending">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Completed</h3>
+                    <p id="stat-tasks-completed">0</p>
+                </div>
+            </div>
+
+            <!-- ADD NEW TASK FORM -->
+            <div class="add-tracker-section">
+                <h3>+ Log New Task / Project Tracker</h3>
+                <form id="task-form">
+                    <div class="tracker-form-row">
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label for="task-name">Task Description / Project Name</label>
+                            <input type="text" id="task-name" class="form-control" placeholder="Finish CodeRefine backend, optimize image files, etc." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-deadline">Deadline</label>
+                            <input type="date" id="task-deadline" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="task-status">Status</label>
+                            <select id="task-status" class="form-control">
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Log Task</button>
+                </form>
+            </div>
+
+            <h2>Task List</h2>
+            <div class="table-responsive">
+                <table class="tracker-table">
+                    <thead>
+                        <tr>
+                            <th>Task Details</th>
+                            <th>Target Deadline</th>
+                            <th>Status (Change Live)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-tbody">
+                        <!-- Dynamic entries appended here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <script>
-        // Simple client-side authorization bypass/storage (Change 'admin123' if desired)
-        const ADMIN_HASH = 'admin123';
-        const STORAGE_KEY = 'sravan-portfolio-tracker-data';
+        const STORAGE_APPS_KEY = 'sravan-portfolio-apps-data';
+        const STORAGE_TASKS_KEY = 'sravan-portfolio-tasks-data';
 
         const loginContainer = document.getElementById('login-container');
         const dashboardContainer = document.getElementById('dashboard-container');
@@ -326,8 +445,10 @@
         const loginError = document.getElementById('login-error');
         const logoutBtn = document.getElementById('logout-btn');
 
-        const trackerForm = document.getElementById('tracker-form');
-        const trackerTbody = document.getElementById('tracker-tbody');
+        const appForm = document.getElementById('app-form');
+        const appTbody = document.getElementById('app-tbody');
+        const taskForm = document.getElementById('task-form');
+        const taskTbody = document.getElementById('task-tbody');
 
         // Check active session status
         if (sessionStorage.getItem('admin-logged-in') === 'true') {
@@ -336,7 +457,6 @@
 
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Match against credentials set in .env template (Username: sravan, Password: sravan123)
             if (usernameInput.value === 'sravan' && passwordInput.value === 'sravan123') {
                 sessionStorage.setItem('admin-logged-in', 'true');
                 loginError.style.display = 'none';
@@ -357,30 +477,49 @@
         function showDashboard() {
             loginContainer.style.display = 'none';
             dashboardContainer.style.display = 'block';
-            renderTrackerData();
+            renderAllData();
         }
 
+        // Tab Switching
+        window.switchTab = function(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        };
+
         // Data Storage & Retrieval
-        function getTrackerData() {
-            const data = localStorage.getItem(STORAGE_KEY);
+        function getAppsData() {
+            const data = localStorage.getItem(STORAGE_APPS_KEY);
             return data ? JSON.parse(data) : [];
         }
 
-        function saveTrackerData(data) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            renderTrackerData();
+        function saveAppsData(data) {
+            localStorage.setItem(STORAGE_APPS_KEY, JSON.stringify(data));
+            renderAppsData();
         }
 
-        // Add handler
-        trackerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const company = document.getElementById('company').value;
-            const role = document.getElementById('role').value;
-            const type = document.getElementById('type').value;
-            const packageVal = document.getElementById('package').value || 'N/A';
-            const status = document.getElementById('status').value;
+        function getTasksData() {
+            const data = localStorage.getItem(STORAGE_TASKS_KEY);
+            return data ? JSON.parse(data) : [];
+        }
 
-            const newOpportunity = {
+        function saveTasksData(data) {
+            localStorage.setItem(STORAGE_TASKS_KEY, JSON.stringify(data));
+            renderTasksData();
+        }
+
+        // Add App Opportunity
+        appForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const company = document.getElementById('app-company').value;
+            const role = document.getElementById('app-role').value;
+            const type = document.getElementById('app-type').value;
+            const packageVal = document.getElementById('app-package').value || 'N/A';
+            const status = document.getElementById('app-status').value;
+
+            const newApp = {
                 id: Date.now(),
                 company: company,
                 role: role,
@@ -389,24 +528,74 @@
                 status: status
             };
 
-            const currentData = getTrackerData();
-            currentData.push(newOpportunity);
-            saveTrackerData(currentData);
-
-            trackerForm.reset();
+            const data = getAppsData();
+            data.push(newApp);
+            saveAppsData(data);
+            appForm.reset();
         });
 
-        // Delete handler
-        window.deleteOpportunity = function(id) {
-            let data = getTrackerData();
-            data = data.filter(item => item.id !== id);
-            saveTrackerData(data);
+        // Add Task Tracker
+        taskForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('task-name').value;
+            const deadline = document.getElementById('task-deadline').value || 'No Target';
+            const status = document.getElementById('task-status').value;
+
+            const newTask = {
+                id: Date.now(),
+                name: name,
+                deadline: deadline,
+                status: status
+            };
+
+            const data = getTasksData();
+            data.push(newTask);
+            saveTasksData(data);
+            taskForm.reset();
+        });
+
+        // Update Live Status Change (Apps)
+        window.updateAppStatus = function(id, selectElement) {
+            const data = getAppsData();
+            const item = data.find(i => i.id === id);
+            if (item) {
+                item.status = selectElement.value;
+                saveAppsData(data);
+            }
         };
 
-        // Render functions
-        function renderTrackerData() {
-            const data = getTrackerData();
-            trackerTbody.innerHTML = '';
+        // Update Live Status Change (Tasks)
+        window.updateTaskStatus = function(id, selectElement) {
+            const data = getTasksData();
+            const item = data.find(i => i.id === id);
+            if (item) {
+                item.status = selectElement.value;
+                saveTasksData(data);
+            }
+        };
+
+        // Delete handlers
+        window.deleteApp = function(id) {
+            let data = getAppsData();
+            data = data.filter(item => item.id !== id);
+            saveAppsData(data);
+        };
+
+        window.deleteTask = function(id) {
+            let data = getTasksData();
+            data = data.filter(item => item.id !== id);
+            saveTasksData(data);
+        };
+
+        // Renderers
+        function renderAllData() {
+            renderAppsData();
+            renderTasksData();
+        }
+
+        function renderAppsData() {
+            const data = getAppsData();
+            appTbody.innerHTML = '';
 
             let totalCount = data.length;
             let jobsCount = 0;
@@ -414,16 +603,9 @@
             let interviewingCount = 0;
 
             data.forEach(function(item) {
-                // Tally stats
                 if (item.type === 'Job') jobsCount++;
                 if (item.type === 'Internship') internshipsCount++;
                 if (item.status === 'Interviewing') interviewingCount++;
-
-                // Build status badge
-                let statusClass = 'status-applied';
-                if (item.status === 'Interviewing') statusClass = 'status-interviewing';
-                if (item.status === 'Offered') statusClass = 'status-offered';
-                if (item.status === 'Rejected') statusClass = 'status-rejected';
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
@@ -431,17 +613,56 @@
                     <td>${item.role}</td>
                     <td>${item.type}</td>
                     <td style="color: var(--accent-light);">${item.package}</td>
-                    <td><span class="status-badge ${statusClass}">${item.status}</span></td>
-                    <td><button onclick="deleteOpportunity(${item.id})" class="btn btn-danger btn-sm">Delete</button></td>
+                    <td>
+                        <select class="status-select-edit" onchange="updateAppStatus(${item.id}, this)">
+                            <option value="Applied" ${item.status === 'Applied' ? 'selected' : ''}>Applied</option>
+                            <option value="Interviewing" ${item.status === 'Interviewing' ? 'selected' : ''}>Interviewing</option>
+                            <option value="Offered" ${item.status === 'Offered' ? 'selected' : ''}>Offered</option>
+                            <option value="Rejected" ${item.status === 'Rejected' ? 'selected' : ''}>Rejected</option>
+                        </select>
+                    </td>
+                    <td><button onclick="deleteApp(${item.id})" class="btn btn-danger btn-sm">Delete</button></td>
                 `;
-                trackerTbody.appendChild(tr);
+                appTbody.appendChild(tr);
             });
 
-            // Update stats indicators
-            document.getElementById('stat-total').textContent = totalCount;
+            document.getElementById('stat-total-apps').textContent = totalCount;
             document.getElementById('stat-jobs').textContent = jobsCount;
             document.getElementById('stat-internships').textContent = internshipsCount;
-            document.getElementById('stat-interviewing').textContent = interviewingCount;
+            document.getElementById('stat-interviewing-apps').textContent = interviewingCount;
+        }
+
+        function renderTasksData() {
+            const data = getTasksData();
+            taskTbody.innerHTML = '';
+
+            let totalCount = data.length;
+            let pendingCount = 0;
+            let completedCount = 0;
+
+            data.forEach(function(item) {
+                if (item.status === 'Completed') completedCount++;
+                else pendingCount++;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-weight: 500; color: var(--text-primary);">${item.name}</td>
+                    <td>${item.deadline}</td>
+                    <td>
+                        <select class="status-select-edit" onchange="updateTaskStatus(${item.id}, this)">
+                            <option value="Pending" ${item.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="In Progress" ${item.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                            <option value="Completed" ${item.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                        </select>
+                    </td>
+                    <td><button onclick="deleteTask(${item.id})" class="btn btn-danger btn-sm">Delete</button></td>
+                `;
+                taskTbody.appendChild(tr);
+            });
+
+            document.getElementById('stat-total-tasks').textContent = totalCount;
+            document.getElementById('stat-tasks-pending').textContent = pendingCount;
+            document.getElementById('stat-tasks-completed').textContent = completedCount;
         }
     </script>
 </body>
