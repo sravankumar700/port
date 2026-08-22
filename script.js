@@ -56,28 +56,22 @@ const observer = new IntersectionObserver(function(entries) {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Slowly cycle through project screenshots while a recruiter explores a card.
+// Auto-advance carousel on the back face of flip cards, with dot indicators.
 document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
     const track = carousel.querySelector('.portfolio-track');
     const slides = track ? track.children : [];
-    const projectCard = carousel.closest('.portfolio-item') || carousel;
+    const flipCard = carousel.closest('.flip-card');
     let currentSlide = 0;
     let intervalId;
-    let expandTimeoutId;
 
-    if (!track) {
+    if (!track || slides.length < 1) {
         return;
     }
 
+    // Build dot indicators for carousels with multiple slides
+    const dots = [];
     if (slides.length > 1) {
-        carousel.classList.add('has-slides');
-    }
-
-    // Build dot indicators
-    let dotsContainer = null;
-    let dots = [];
-    if (slides.length > 1) {
-        dotsContainer = document.createElement('div');
+        const dotsContainer = document.createElement('div');
         dotsContainer.className = 'carousel-dots';
         for (let i = 0; i < slides.length; i++) {
             const dot = document.createElement('button');
@@ -112,32 +106,28 @@ document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
     }
 
     function startCarousel() {
-        expandTimeoutId = window.setTimeout(function() {
-            projectCard.classList.add('is-expanded');
-        }, 350);
-
         if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             return;
         }
         clearInterval(intervalId);
-        intervalId = window.setInterval(showNextSlide, 5000);
+        intervalId = window.setInterval(showNextSlide, 4000);
     }
 
     function stopCarousel() {
-        clearTimeout(expandTimeoutId);
-        projectCard.classList.remove('is-expanded');
         clearInterval(intervalId);
         intervalId = undefined;
-        // Reset to first slide when closing
+        // Reset to first slide when flipping back
         currentSlide = 0;
         track.style.transform = 'translateX(0)';
         updateDots();
     }
 
-    projectCard.addEventListener('mouseenter', startCarousel);
-    projectCard.addEventListener('mouseleave', stopCarousel);
-    projectCard.addEventListener('focusin', startCarousel);
-    projectCard.addEventListener('focusout', stopCarousel);
+    if (flipCard) {
+        flipCard.addEventListener('mouseenter', startCarousel);
+        flipCard.addEventListener('mouseleave', stopCarousel);
+        flipCard.addEventListener('focusin', startCarousel);
+        flipCard.addEventListener('focusout', stopCarousel);
+    }
 });
 
 // Active navigation link on scroll
