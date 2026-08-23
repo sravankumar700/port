@@ -184,33 +184,18 @@ document.addEventListener('DOMContentLoaded', function() {
     type();
 });
 
-function initViewCounter() {
-    const countElement = document.getElementById('portfolio-view-count');
-    const counterKey = 'portfolio-page-view-recorded';
-    if (!countElement || typeof Counter !== 'function') return;
+// Portfolio view count via GoatCounter API
+// Replace YOUR_CODE with your goatcounter site code
+window.addEventListener('load', function() {
+    var countElement = document.getElementById('portfolio-view-count');
+    if (!countElement) return;
 
-    try {
-        const counter = new Counter({ workspace: 'sravan-kumar-portfolio' });
-        const hasRecordedVisit = sessionStorage.getItem(counterKey) === 'true';
-        const request = hasRecordedVisit ? counter.get('page-views') : counter.up('page-views');
-
-        request.then(function(result) {
-            const count = Number(result.value);
-            if (!Number.isFinite(count)) throw new Error('Invalid counter response');
-            countElement.textContent = count.toLocaleString();
-            if (!hasRecordedVisit) sessionStorage.setItem(counterKey, 'true');
-        }).catch(function() {
+    fetch('https://sravankumar.goatcounter.com/counter//_.json')
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            countElement.textContent = Number(data.count).toLocaleString();
+        })
+        .catch(function() {
             countElement.textContent = '\u2014';
         });
-    } catch (e) {
-        countElement.textContent = '\u2014';
-    }
-}
-
-// Wait for the CDN script to load before running the counter
-var counterScript = document.querySelector('script[src*="counterapi"]');
-if (counterScript) {
-    counterScript.addEventListener('load', initViewCounter);
-} else {
-    document.addEventListener('DOMContentLoaded', initViewCounter);
-}
+});
