@@ -184,13 +184,10 @@ document.addEventListener('DOMContentLoaded', function() {
     type();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+function initViewCounter() {
     const countElement = document.getElementById('portfolio-view-count');
     const counterKey = 'portfolio-page-view-recorded';
-
-    if (!countElement || typeof Counter !== 'function') {
-        return;
-    }
+    if (!countElement || typeof Counter !== 'function') return;
 
     try {
         const counter = new Counter({ workspace: 'sravan-kumar-portfolio' });
@@ -199,17 +196,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         request.then(function(result) {
             const count = Number(result.value);
-            if (!Number.isFinite(count)) {
-                throw new Error('Invalid counter response');
-            }
+            if (!Number.isFinite(count)) throw new Error('Invalid counter response');
             countElement.textContent = count.toLocaleString();
-            if (!hasRecordedVisit) {
-                sessionStorage.setItem(counterKey, 'true');
-            }
+            if (!hasRecordedVisit) sessionStorage.setItem(counterKey, 'true');
         }).catch(function() {
             countElement.textContent = '\u2014';
         });
-    } catch (error) {
+    } catch (e) {
         countElement.textContent = '\u2014';
     }
-});
+}
+
+// Wait for the CDN script to load before running the counter
+var counterScript = document.querySelector('script[src*="counterapi"]');
+if (counterScript) {
+    counterScript.addEventListener('load', initViewCounter);
+} else {
+    document.addEventListener('DOMContentLoaded', initViewCounter);
+}
