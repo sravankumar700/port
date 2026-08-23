@@ -695,7 +695,10 @@
         // Drag & Drop handlers
         window.allowDrop = function(ev) {
             ev.preventDefault();
-            ev.currentTarget.classList.add('drag-over');
+            const col = ev.currentTarget;
+            if (col) {
+                col.classList.add('drag-over');
+            }
         };
 
         window.drag = function(ev) {
@@ -704,7 +707,10 @@
 
         window.drop = function(ev, targetStatus) {
             ev.preventDefault();
-            ev.currentTarget.classList.remove('drag-over');
+            const col = ev.currentTarget;
+            if (col) {
+                col.classList.remove('drag-over');
+            }
             const cardId = ev.dataTransfer.getData("text");
             const dbId = parseInt(cardId.split('-')[1]);
             
@@ -716,9 +722,13 @@
             }
         };
 
-        document.querySelectorAll('.kanban-column').forEach(function(col) {
-            col.addEventListener('dragleave', function() {
-                col.classList.remove('drag-over');
+        // DOM elements listener attach
+        document.addEventListener('DOMContentLoaded', function() {
+            // Re-apply dragleave listener safely
+            document.querySelectorAll('.kanban-column').forEach(function(col) {
+                col.addEventListener('dragleave', function() {
+                    col.classList.remove('drag-over');
+                });
             });
         });
 

@@ -56,77 +56,54 @@ const observer = new IntersectionObserver(function(entries) {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Auto-advance carousel on the back face of flip cards, with dot indicators.
-document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
-    const track = carousel.querySelector('.portfolio-track');
-    const slides = track ? track.children : [];
-    const flipCard = carousel.closest('.flip-card');
-    let currentSlide = 0;
+// Auto-advance carousel on project card thumbnails
+document.querySelectorAll('[data-carousel]').forEach(function(thumb) {
+    const track = thumb.querySelector('.project-track');
+    const slides = track ? Array.from(track.children) : [];
+    const card = thumb.closest('.project-card');
+    let current = 0;
     let intervalId;
 
-    if (!track || slides.length < 1) {
-        return;
-    }
+    if (!track || slides.length < 2) return;
 
-    // Build dot indicators for carousels with multiple slides
-    const dots = [];
-    if (slides.length > 1) {
-        const dotsContainer = document.createElement('div');
-        dotsContainer.className = 'carousel-dots';
-        for (let i = 0; i < slides.length; i++) {
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-            dot.addEventListener('click', function(e) {
-                e.stopPropagation();
-                goToSlide(i);
-            });
-            dotsContainer.appendChild(dot);
-            dots.push(dot);
-        }
-        carousel.appendChild(dotsContainer);
-    }
-
-    function updateDots() {
-        dots.forEach(function(dot, i) {
-            dot.classList.toggle('active', i === currentSlide);
+    // Build dot indicators
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'project-dots';
+    const dots = slides.map(function(_, i) {
+        const dot = document.createElement('button');
+        dot.className = 'project-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            goTo(i);
         });
+        dotsContainer.appendChild(dot);
+        return dot;
+    });
+    thumb.appendChild(dotsContainer);
+
+    function goTo(index) {
+        current = index;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
     }
 
-    function goToSlide(index) {
-        currentSlide = index;
-        track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-        updateDots();
-    }
+    function next() { goTo((current + 1) % slides.length); }
 
-    function showNextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-        updateDots();
-    }
-
-    function startCarousel() {
-        if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            return;
-        }
+    function start() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         clearInterval(intervalId);
-        intervalId = window.setInterval(showNextSlide, 2500);
+        intervalId = setInterval(next, 2500);
     }
 
-    function stopCarousel() {
+    function stop() {
         clearInterval(intervalId);
-        intervalId = undefined;
-        // Reset to first slide when flipping back
-        currentSlide = 0;
-        track.style.transform = 'translateX(0)';
-        updateDots();
+        goTo(0);
     }
 
-    if (flipCard) {
-        flipCard.addEventListener('mouseenter', startCarousel);
-        flipCard.addEventListener('mouseleave', stopCarousel);
-        flipCard.addEventListener('focusin', startCarousel);
-        flipCard.addEventListener('focusout', stopCarousel);
+    if (card) {
+        card.addEventListener('mouseenter', start);
+        card.addEventListener('mouseleave', stop);
     }
 });
 
@@ -134,18 +111,18 @@ document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
 window.addEventListener('scroll', function() {
     let current = '';
     const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 200) {
+
+    sections.forEach(function(section) {
+        if (pageYOffset >= section.offsetTop - 200) {
             current = section.getAttribute('id');
         }
     });
 
-    document.querySelectorAll('nav a').forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href').slice(1) === current) {
-            link.style.color = 'var(--accent)';
+    document.querySelectorAll('nav a').forEach(function(link) {
+        link.classList.remove('nav-active');
+        const href = link.getAttribute('href');
+        if (href && href.slice(1) === current) {
+            link.classList.add('nav-active');
         }
     });
 
@@ -178,25 +155,33 @@ document.getElementById('back-to-top')?.addEventListener('click', function() {
     });
 });
 
-// Keyboard support for project flip cards
-document.querySelectorAll('.flip-card').forEach(function(card) {
-    card.addEventListener('keydown', function(e) {
-        if (e.key === ' ' || e.key === 'Enter') {
-            e.preventDefault();
-            const inner = card.querySelector('.flip-inner');
-            if (inner) {
-                const isFlipped = inner.style.transform === 'rotateY(180deg)';
-                inner.style.transform = isFlipped ? 'rotateY(0deg)' : 'rotateY(180deg)';
-                
-                // Trigger/stop carousel dynamically depending on state
-                const carousel = card.querySelector('[data-carousel]');
-                if (carousel) {
-                    const focusEvent = new Event(isFlipped ? 'focusout' : 'focusin');
-                    card.dispatchEvent(focusEvent);
-                }
-            }
+// Typewriter effect for hero role line
+document.addEventListener('DOMContentLoaded', function() {
+    const roles = [
+        'Building AI-powered applications.',
+        'Designing backend systems.',
+        'Creating data-driven products.',
+        'Turning ideas into software.'
+    ];
+    const el = document.getElementById('typed-role');
+    if (!el) return;
+    let ri = 0, ci = 0, deleting = false;
+
+    function type() {
+        const current = roles[ri];
+        el.textContent = deleting ? current.slice(0, --ci) : current.slice(0, ++ci);
+        if (!deleting && ci === current.length) {
+            deleting = true;
+            setTimeout(type, 1800);
+            return;
         }
-    });
+        if (deleting && ci === 0) {
+            deleting = false;
+            ri = (ri + 1) % roles.length;
+        }
+        setTimeout(type, deleting ? 38 : 72);
+    }
+    type();
 });
 
 document.addEventListener('DOMContentLoaded', function() {

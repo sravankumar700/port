@@ -35,9 +35,9 @@
     <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Sravan Kumar Meesala</h1>
-            <p class="tagline">AI &amp; Data Science Engineer | Python Developer</p>
-            <p class="tagline">Building AI-powered applications, backend systems and data-driven products.</p>
+            <p class="hero-label">AI &amp; Data Science Engineer</p>
+            <h1>Sravan Kumar<br>Meesala</h1>
+            <p class="tagline" id="typed-role"></p>
             <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary">View My Work</a>
                 <a class="btn btn-secondary" href="Sravan%20Python_Dev.pdf" download="Sravan-Python-Developer-Resume.pdf">Download Resume</a>
@@ -146,118 +146,121 @@
         <div class="portfolio-grid">
 
             <!-- Zyra -->
-            <article class="flip-card fade-in" tabindex="0" aria-label="Zyra project - hover to see details">
-                <div class="flip-inner">
-                    <!-- FRONT -->
-                    <div class="flip-front">
-                        <img class="flip-cover" src="zyra/zyra.png" alt="Zyra AI recruitment platform">
-                        <div class="flip-front-overlay">
-                            <span class="category">AI / Full Stack</span>
-                            <h3>Zyra</h3>
-                            <p class="flip-hint">Hover to explore →</p>
-                        </div>
+            <article class="project-card fade-in">
+                <div class="project-thumb">
+                    <img src="zyra/zyra.png" alt="Zyra AI recruitment platform" loading="lazy">
+                    <span class="project-category">AI / Full Stack</span>
+                    <span class="project-num">01</span>
+                </div>
+                <div class="project-body">
+                    <h3>Zyra — AI Recruitment &amp; Interview Platform</h3>
+                    <p>Built to eliminate manual HR screening — automates resume ranking, runs AI-driven candidate interviews, and delivers structured reports end to end.</p>
+                    <div class="project-stack">
+                        <span>Python</span><span>Flask</span><span>MongoDB</span><span>JavaScript</span><span>LLM APIs</span>
                     </div>
-                    <!-- BACK -->
-                    <div class="flip-back">
-                        <div class="flip-carousel" data-carousel>
-                            <div class="portfolio-track">
-                                <img class="portfolio-image" src="zyra/zyra.png" alt="Zyra AI recruitment and interview platform">
-                            </div>
-                        </div>
-                        <div class="flip-details">
-                            <div class="category">AI / Full Stack</div>
-                            <h3>Zyra - AI Recruitment &amp; Interview Platform</h3>
-                            <p>AI-powered platform reducing HR workload through resume screening, candidate assessment, AI interviews and automated reporting.</p>
-                            <ul class="project-features"><li>Resume Analyzer</li><li>Candidate Shortlisting</li><li>MCQ Assessment</li><li>AI Interview</li><li>Automated Reports</li><li>Email Automation</li></ul>
-                            <p class="project-tech"><strong>Stack:</strong> Python, Flask, MongoDB, JS, AI/LLM APIs</p>
-                            <div class="project-actions"><a class="btn btn-secondary" href="https://github.com/sravankumar700/Zyra" target="_blank" rel="noopener noreferrer">View GitHub</a></div>
-                        </div>
+                    <div class="project-links">
+                        <a href="https://github.com/sravankumar700/Zyra" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub →</a>
                     </div>
                 </div>
             </article>
 
             <!-- CodeRefine -->
-            <article class="flip-card fade-in" tabindex="0" aria-label="CodeRefine project - hover to see details">
-                <div class="flip-inner">
-                    <!-- FRONT -->
-                    <div class="flip-front">
-                        <img class="flip-cover" src="zyra/zyra.png" alt="CodeRefine AI code analysis platform">
-                        <div class="flip-front-overlay">
-                            <span class="category">AI / Developer Tools</span>
-                            <h3>CodeRefine</h3>
-                            <p class="flip-hint">Hover to explore →</p>
-                        </div>
+            <article class="project-card fade-in">
+                <div class="project-thumb project-thumb--placeholder">
+                    <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="600" height="340" fill="#0D0D0D"/>
+                        <rect x="20" y="20" width="560" height="24" rx="3" fill="#181818"/>
+                        <circle cx="38" cy="32" r="5" fill="#3a3a3a"/><circle cx="54" cy="32" r="5" fill="#3a3a3a"/><circle cx="70" cy="32" r="5" fill="#3a3a3a"/>
+                        <rect x="20" y="56" width="160" height="264" rx="3" fill="#141414"/>
+                        <rect x="36" y="72" width="80" height="8" rx="2" fill="#242424"/>
+                        <rect x="36" y="88" width="110" height="8" rx="2" fill="#1e1e1e"/>
+                        <rect x="36" y="104" width="95" height="8" rx="2" fill="#1e1e1e"/>
+                        <rect x="36" y="120" width="120" height="8" rx="2" fill="#1e1e1e"/>
+                        <rect x="192" y="56" width="388" height="264" rx="3" fill="#111"/>
+                        <rect x="208" y="76" width="60" height="10" rx="2" fill="#8F6F3F" opacity="0.7"/>
+                        <rect x="278" y="76" width="120" height="10" rx="2" fill="#C9A86A" opacity="0.5"/>
+                        <rect x="208" y="96" width="200" height="8" rx="2" fill="#242424"/>
+                        <rect x="208" y="112" width="160" height="8" rx="2" fill="#1e1e1e"/>
+                        <rect x="208" y="128" width="240" height="8" rx="2" fill="#1e1e1e"/>
+                        <rect x="208" y="144" width="180" height="8" rx="2" fill="#C9A86A" opacity="0.3"/>
+                        <rect x="208" y="168" width="340" height="1" fill="#242424"/>
+                        <rect x="208" y="184" width="100" height="28" rx="3" fill="#8F6F3F" opacity="0.25"/>
+                        <rect x="216" y="192" width="84" height="12" rx="2" fill="#C9A86A" opacity="0.6"/>
+                        <text x="300" y="290" text-anchor="middle" font-family="monospace" font-size="13" fill="#706C65" letter-spacing="3">CODEREFINE</text>
+                    </svg>
+                    <span class="project-category">AI / Developer Tools</span>
+                    <span class="project-num">02</span>
+                </div>
+                <div class="project-body">
+                    <h3>CodeRefine — AI Code Analysis Platform</h3>
+                    <p>Paste any code and get instant AI-powered analysis — identifies bugs, suggests improvements, and explains issues in plain language for faster debugging.</p>
+                    <div class="project-stack">
+                        <span>Python</span><span>Flask</span><span>JavaScript</span><span>MongoDB</span><span>AI APIs</span>
                     </div>
-                    <!-- BACK -->
-                    <div class="flip-back">
-                        <div class="flip-carousel" data-carousel>
-                            <div class="portfolio-track">
-                                <img class="portfolio-image" src="zyra/zyra.png" alt="CodeRefine AI code analysis platform">
-                            </div>
-                        </div>
-                        <div class="flip-details">
-                            <div class="category">AI / Developer Tools</div>
-                            <h3>CodeRefine - AI Code Analysis Platform</h3>
-                            <p>A web-based code analysis platform that identifies code issues and provides intelligent analysis to help developers improve their code quality.</p>
-                            <p class="project-tech"><strong>Stack:</strong> Python, Flask, JavaScript, MongoDB, AI APIs</p>
-                        </div>
+                    <div class="project-links">
+                        <span class="project-wip">In Development</span>
                     </div>
                 </div>
             </article>
 
             <!-- Salon ERP -->
-            <article class="flip-card fade-in" tabindex="0" aria-label="Salon ERP project - hover to see details">
-                <div class="flip-inner">
-                    <!-- FRONT -->
-                    <div class="flip-front">
-                        <img class="flip-cover" src="hair%20and%20glow/landinghairandglow.png" alt="Salon ERP dashboard">
-                        <div class="flip-front-overlay">
-                            <span class="category">Business Software / Full Stack</span>
-                            <h3>Salon ERP</h3>
-                            <p class="flip-hint">Hover to explore →</p>
-                        </div>
+            <article class="project-card fade-in">
+                <div class="project-thumb project-thumb--carousel" data-carousel>
+                    <div class="project-track">
+                        <img src="hair%20and%20glow/landinghairandglow.png" alt="Salon ERP landing" loading="lazy">
+                        <img src="hair%20and%20glow/adminhairandglow.png" alt="Salon ERP admin" loading="lazy">
+                        <img src="hair%20and%20glow/appointmenthairand%20glow.png" alt="Salon ERP appointments" loading="lazy">
+                        <img src="hair%20and%20glow/galleryhair%26glow.png" alt="Salon ERP gallery" loading="lazy">
                     </div>
-                    <!-- BACK -->
-                    <div class="flip-back">
-                        <div class="flip-carousel" data-carousel>
-                            <div class="portfolio-track">
-                                <img class="portfolio-image" src="hair%20and%20glow/landinghairandglow.png" alt="Salon ERP dashboard">
-                                <img class="portfolio-image" src="hair%20and%20glow/adminhairandglow.png" alt="Salon ERP admin screen">
-                                <img class="portfolio-image" src="hair%20and%20glow/appointmenthairand%20glow.png" alt="Salon ERP appointment screen">
-                                <img class="portfolio-image" src="hair%20and%20glow/galleryhair%26glow.png" alt="Salon ERP gallery screen">
-                            </div>
-                        </div>
-                        <div class="flip-details">
-                            <div class="category">Business Software / Full Stack</div>
-                            <h3>Salon ERP - POS &amp; CRM System</h3>
-                            <p>Business management platform for salon operations — billing, customer management, loyalty programs and multi-branch operations.</p>
-                            <ul class="project-features"><li>Billing &amp; POS</li><li>Customer Management</li><li>Loyalty &amp; Coupons</li><li>Multi-branch</li><li>Offline-first</li></ul>
-                        </div>
+                    <span class="project-category">Business Software / Full Stack</span>
+                    <span class="project-num">03</span>
+                </div>
+                <div class="project-body">
+                    <h3>Salon ERP — POS &amp; CRM System</h3>
+                    <p>Full business management platform for salon chains — handles billing, customer loyalty, multi-branch operations and works offline-first for uninterrupted service.</p>
+                    <div class="project-stack">
+                        <span>Python</span><span>Flask</span><span>SQLite</span><span>JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-wip">Client Project</span>
                     </div>
                 </div>
             </article>
 
             <!-- LittleOne -->
-            <article class="flip-card fade-in" tabindex="0" aria-label="LittleOne project - hover to see details">
-                <div class="flip-inner">
-                    <!-- FRONT -->
-                    <div class="flip-front flip-front--placeholder">
-                        <div class="flip-front-overlay flip-front-overlay--center">
-                            <span class="category">SaaS / AI</span>
-                            <h3>LittleOne</h3>
-                            <p class="flip-hint">Hover to explore →</p>
-                        </div>
+            <article class="project-card fade-in">
+                <div class="project-thumb project-thumb--placeholder">
+                    <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="600" height="340" fill="#0D0D0D"/>
+                        <rect x="20" y="20" width="560" height="300" rx="6" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
+                        <rect x="40" y="50" width="200" height="16" rx="3" fill="#C9A86A" opacity="0.15"/>
+                        <rect x="40" y="76" width="300" height="10" rx="2" fill="#242424"/>
+                        <rect x="40" y="94" width="260" height="10" rx="2" fill="#1e1e1e"/>
+                        <rect x="40" y="130" width="120" height="80" rx="4" fill="#141414" stroke="#242424" stroke-width="1"/>
+                        <rect x="52" y="142" width="60" height="8" rx="2" fill="#8F6F3F" opacity="0.5"/>
+                        <rect x="52" y="158" width="96" height="6" rx="2" fill="#1e1e1e"/>
+                        <rect x="52" y="172" width="80" height="6" rx="2" fill="#1e1e1e"/>
+                        <rect x="180" y="130" width="120" height="80" rx="4" fill="#141414" stroke="#242424" stroke-width="1"/>
+                        <rect x="192" y="142" width="60" height="8" rx="2" fill="#8F6F3F" opacity="0.5"/>
+                        <rect x="192" y="158" width="96" height="6" rx="2" fill="#1e1e1e"/>
+                        <rect x="192" y="172" width="80" height="6" rx="2" fill="#1e1e1e"/>
+                        <rect x="320" y="130" width="220" height="80" rx="4" fill="#141414" stroke="#C9A86A" stroke-width="1" opacity="0.4"/>
+                        <rect x="332" y="142" width="80" height="8" rx="2" fill="#C9A86A" opacity="0.4"/>
+                        <rect x="332" y="158" width="180" height="6" rx="2" fill="#1e1e1e"/>
+                        <rect x="332" y="172" width="140" height="6" rx="2" fill="#1e1e1e"/>
+                        <text x="300" y="290" text-anchor="middle" font-family="monospace" font-size="13" fill="#706C65" letter-spacing="3">LITTLEONE</text>
+                    </svg>
+                    <span class="project-category">SaaS / AI</span>
+                    <span class="project-num">04</span>
+                </div>
+                <div class="project-body">
+                    <h3>LittleOne — Intelligent Workspace Platform</h3>
+                    <p>A SaaS concept combining project management with an integrated Website Intelligence Engine — designed to give teams AI-assisted context on their own products.</p>
+                    <div class="project-stack">
+                        <span>Python</span><span>AI/ML</span><span>SaaS</span>
                     </div>
-                    <!-- BACK -->
-                    <div class="flip-back">
-                        <div class="flip-carousel flip-carousel--placeholder">
-                            <div class="flip-placeholder-label">LittleOne</div>
-                        </div>
-                        <div class="flip-details">
-                            <div class="category">SaaS / AI</div>
-                            <h3>LittleOne - Intelligent Workspace Platform</h3>
-                            <p>A platform concept focused on workspace and project management with an integrated Website Intelligence Engine.</p>
-                        </div>
+                    <div class="project-links">
+                        <span class="project-wip">Concept Stage</span>
                     </div>
                 </div>
             </article>
