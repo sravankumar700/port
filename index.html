@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="styles.css">
     <!-- GoatCounter: replace YOUR_CODE with your goatcounter site code -->
     <script data-goatcounter="https://sravankumar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <!-- Lenis smooth scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
     <!-- PAGE SCROLL PROGRESS -->
@@ -37,7 +42,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <p class="hero-label">AI &amp; Data Science Engineer</p>
-            <h1>Sravan Kumar<br>Meesala</h1>
+            <h1 data-split>Sravan Kumar<br>Meesala</h1>
             <p class="tagline" id="typed-role"></p>
             <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -51,38 +56,38 @@
 
     <!-- ABOUT SECTION -->
     <section class="about" id="about">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title reveal-title">About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <h2>Building Practical Software</h2>
-                <p>I am a final-year B.Tech student specializing in Artificial Intelligence &amp; Data Science, graduating in 2027.</p>
-                <p>I build practical software products using Python, backend technologies, databases and AI/ML technologies. My work includes an AI-powered recruitment platform, code analysis platform and business management software.</p>
-                <p>I am strengthening my Python, DSA, Java, SQL, AI/ML, Generative AI and backend engineering skills.</p>
+                <h2 class="reveal-up">Building Practical Software</h2>
+                <p class="reveal-up">I am a final-year B.Tech student specializing in Artificial Intelligence &amp; Data Science, graduating in 2027.</p>
+                <p class="reveal-up">I build practical software products using Python, backend technologies, databases and AI/ML technologies. My work includes an AI-powered recruitment platform, code analysis platform and business management software.</p>
+                <p class="reveal-up">I am strengthening my Python, DSA, Java, SQL, AI/ML, Generative AI and backend engineering skills.</p>
             </div>
             <div class="credentials">
-                <div class="credential-item"><h3>Education</h3><p>B.Tech - AI &amp; Data Science</p></div>
-                <div class="credential-item"><h3>Graduation</h3><p>2027</p></div>
-                <div class="credential-item"><h3>Primary Language</h3><p>Python</p></div>
-                <div class="credential-item"><h3>Focus</h3><p>AI/ML - Backend - Data</p></div>
+                <div class="credential-item reveal-up"><h3>Education</h3><p>B.Tech - AI &amp; Data Science</p></div>
+                <div class="credential-item reveal-up"><h3>Graduation</h3><p>2027</p></div>
+                <div class="credential-item reveal-up"><h3>Primary Language</h3><p>Python</p></div>
+                <div class="credential-item reveal-up"><h3>Focus</h3><p>AI/ML - Backend - Data</p></div>
             </div>
         </div>
     </section>
 
     <!-- EDUCATION SECTION -->
     <section class="about" id="education">
-        <h2 class="section-title">Education</h2>
+        <h2 class="section-title reveal-title">Education</h2>
         <div class="credentials education-grid">
-            <div class="credential-item">
+            <div class="credential-item reveal-up">
                 <h3>B.Tech - Artificial Intelligence &amp; Data Science</h3>
                 <p>AVN Institute of Engineering and Technology</p>
                 <p>Graduation: 2027</p>
             </div>
-            <div class="credential-item">
+            <div class="credential-item reveal-up">
                 <h3>Intermediate</h3>
                 <p>Word and Deed Junior College</p>
                 <p>69.6%</p>
             </div>
-            <div class="credential-item">
+            <div class="credential-item reveal-up">
                 <h3>SSC</h3>
                 <p>UShodaya High School</p>
                 <p>CGPA: 9.8</p>
@@ -92,7 +97,7 @@
 
     <!-- EXPERIENCE SECTION -->
     <section class="services" id="experience">
-        <h2 class="section-title">Experience</h2>
+        <h2 class="section-title reveal-title">Experience</h2>
         <div class="services-grid">
             <div>
                 <div class="service-item">
@@ -124,154 +129,108 @@
 
     <!-- SKILLS SECTION -->
     <section class="skills" id="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card fade-in">
-                <h3>Core Skills</h3>
-                <div class="skill-tags"><span class="tag" tabindex="0">Python</span><span class="tag" tabindex="0">Flask</span><span class="tag" tabindex="0">HTML</span><span class="tag" tabindex="0">CSS</span><span class="tag" tabindex="0">JavaScript</span><span class="tag" tabindex="0">MongoDB</span></div>
-            </div>
-            <div class="skill-card fade-in">
-                <h3>Working Knowledge</h3>
-                <div class="skill-tags"><span class="tag" tabindex="0">FastAPI</span><span class="tag" tabindex="0">REST APIs</span><span class="tag" tabindex="0">PostgreSQL</span><span class="tag" tabindex="0">SQLite</span><span class="tag" tabindex="0">Git</span><span class="tag" tabindex="0">GitHub</span><span class="tag" tabindex="0">VS Code</span><span class="tag" tabindex="0">Postman</span></div>
-            </div>
-            <div class="skill-card fade-in">
-                <h3>AI / ML / GenAI</h3>
-                <div class="skill-tags"><span class="tag" tabindex="0">Machine Learning</span><span class="tag" tabindex="0">Generative AI</span><span class="tag" tabindex="0">LLM APIs</span><span class="tag" tabindex="0">Hugging Face</span><span class="tag" tabindex="0">Ollama</span><span class="tag" tabindex="0">Groq</span><span class="tag" tabindex="0">Amazon Bedrock</span></div>
+        <h2 class="section-title reveal-title">Technical Skills</h2>
+        <div class="skills-pin-wrap">
+            <div class="skills-h-track">
+                <div class="skill-card fade-in">
+                    <h3>Core Skills</h3>
+                    <div class="skill-tags"><span class="tag" tabindex="0">Python</span><span class="tag" tabindex="0">Flask</span><span class="tag" tabindex="0">HTML</span><span class="tag" tabindex="0">CSS</span><span class="tag" tabindex="0">JavaScript</span><span class="tag" tabindex="0">MongoDB</span></div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3>Working Knowledge</h3>
+                    <div class="skill-tags"><span class="tag" tabindex="0">FastAPI</span><span class="tag" tabindex="0">REST APIs</span><span class="tag" tabindex="0">PostgreSQL</span><span class="tag" tabindex="0">SQLite</span><span class="tag" tabindex="0">Git</span><span class="tag" tabindex="0">GitHub</span><span class="tag" tabindex="0">VS Code</span><span class="tag" tabindex="0">Postman</span></div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3>AI / ML / GenAI</h3>
+                    <div class="skill-tags"><span class="tag" tabindex="0">Machine Learning</span><span class="tag" tabindex="0">Generative AI</span><span class="tag" tabindex="0">LLM APIs</span><span class="tag" tabindex="0">Hugging Face</span><span class="tag" tabindex="0">Ollama</span><span class="tag" tabindex="0">Groq</span><span class="tag" tabindex="0">Amazon Bedrock</span></div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- PROJECTS SECTION -->
+    <div class="projects-outer">
     <section class="portfolio" id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="portfolio-grid">
+        <h2 class="section-title reveal-title">Featured Projects</h2>
+        <div class="proj-track-clip">
+            <div class="proj-track" id="projTrack" aria-label="Project cards">
 
-            <!-- Zyra -->
-            <article class="project-card fade-in">
-                <div class="project-thumb">
-                    <img src="zyra/zyra.png" alt="Zyra AI recruitment platform" loading="lazy">
-                    <span class="project-category">AI / Full Stack</span>
-                    <span class="project-num">01</span>
-                </div>
-                <div class="project-body">
-                    <h3>Zyra — AI Recruitment &amp; Interview Platform</h3>
-                    <p>Built to eliminate manual HR screening — automates resume ranking, runs AI-driven candidate interviews, and delivers structured reports end to end.</p>
-                    <div class="project-stack">
-                        <span>Python</span><span>Flask</span><span>MongoDB</span><span>JavaScript</span><span>LLM APIs</span>
+                <!-- Zyra -->
+                <article class="arc-card" data-index="0">
+                    <div class="arc-card-img">
+                        <img src="zyra/zyra.png" alt="Zyra AI recruitment platform" loading="lazy">
+                        <span class="arc-category">AI / Full Stack</span>
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/sravankumar700/Zyra" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub →</a>
+                    <div class="arc-card-body">
+                        <span class="arc-num">01</span>
+                        <h3>Zyra — AI Recruitment &amp; Interview Platform</h3>
+                        <p>Built to eliminate manual HR screening — automates resume ranking, runs AI-driven candidate interviews, and delivers structured reports end to end.</p>
+                        <div class="arc-stack"><span>Python</span><span>Flask</span><span>MongoDB</span><span>JavaScript</span><span>LLM APIs</span></div>
+                        <div class="arc-links"><a href="https://github.com/sravankumar700/Zyra" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub →</a></div>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <!-- CodeRefine -->
-            <article class="project-card fade-in">
-                <div class="project-thumb project-thumb--placeholder">
-                    <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <rect width="600" height="340" fill="#0D0D0D"/>
-                        <rect x="20" y="20" width="560" height="24" rx="3" fill="#181818"/>
-                        <circle cx="38" cy="32" r="5" fill="#3a3a3a"/><circle cx="54" cy="32" r="5" fill="#3a3a3a"/><circle cx="70" cy="32" r="5" fill="#3a3a3a"/>
-                        <rect x="20" y="56" width="160" height="264" rx="3" fill="#141414"/>
-                        <rect x="36" y="72" width="80" height="8" rx="2" fill="#242424"/>
-                        <rect x="36" y="88" width="110" height="8" rx="2" fill="#1e1e1e"/>
-                        <rect x="36" y="104" width="95" height="8" rx="2" fill="#1e1e1e"/>
-                        <rect x="36" y="120" width="120" height="8" rx="2" fill="#1e1e1e"/>
-                        <rect x="192" y="56" width="388" height="264" rx="3" fill="#111"/>
-                        <rect x="208" y="76" width="60" height="10" rx="2" fill="#8F6F3F" opacity="0.7"/>
-                        <rect x="278" y="76" width="120" height="10" rx="2" fill="#C9A86A" opacity="0.5"/>
-                        <rect x="208" y="96" width="200" height="8" rx="2" fill="#242424"/>
-                        <rect x="208" y="112" width="160" height="8" rx="2" fill="#1e1e1e"/>
-                        <rect x="208" y="128" width="240" height="8" rx="2" fill="#1e1e1e"/>
-                        <rect x="208" y="144" width="180" height="8" rx="2" fill="#C9A86A" opacity="0.3"/>
-                        <rect x="208" y="168" width="340" height="1" fill="#242424"/>
-                        <rect x="208" y="184" width="100" height="28" rx="3" fill="#8F6F3F" opacity="0.25"/>
-                        <rect x="216" y="192" width="84" height="12" rx="2" fill="#C9A86A" opacity="0.6"/>
-                        <text x="300" y="290" text-anchor="middle" font-family="monospace" font-size="13" fill="#706C65" letter-spacing="3">CODEREFINE</text>
-                    </svg>
-                    <span class="project-category">AI / Developer Tools</span>
-                    <span class="project-num">02</span>
-                </div>
-                <div class="project-body">
-                    <h3>CodeRefine — AI Code Analysis Platform</h3>
-                    <p>Paste any code and get instant AI-powered analysis — identifies bugs, suggests improvements, and explains issues in plain language for faster debugging.</p>
-                    <div class="project-stack">
-                        <span>Python</span><span>Flask</span><span>JavaScript</span><span>MongoDB</span><span>AI APIs</span>
+                <!-- CodeRefine -->
+                <article class="arc-card" data-index="1">
+                    <div class="arc-card-img arc-card-img--placeholder">
+                        <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="600" height="340" fill="#0D0D0D"/><rect x="20" y="20" width="560" height="24" rx="3" fill="#181818"/><circle cx="38" cy="32" r="5" fill="#3a3a3a"/><circle cx="54" cy="32" r="5" fill="#3a3a3a"/><circle cx="70" cy="32" r="5" fill="#3a3a3a"/><rect x="20" y="56" width="160" height="264" rx="3" fill="#141414"/><rect x="36" y="72" width="80" height="8" rx="2" fill="#242424"/><rect x="36" y="88" width="110" height="8" rx="2" fill="#1e1e1e"/><rect x="192" y="56" width="388" height="264" rx="3" fill="#111"/><rect x="208" y="76" width="60" height="10" rx="2" fill="#8F6F3F" opacity="0.7"/><rect x="278" y="76" width="120" height="10" rx="2" fill="#C9A86A" opacity="0.5"/><rect x="208" y="96" width="200" height="8" rx="2" fill="#242424"/><rect x="208" y="128" width="240" height="8" rx="2" fill="#1e1e1e"/><rect x="208" y="144" width="180" height="8" rx="2" fill="#C9A86A" opacity="0.3"/><text x="300" y="290" text-anchor="middle" font-family="monospace" font-size="13" fill="#706C65" letter-spacing="3">CODEREFINE</text></svg>
+                        <span class="arc-category">AI / Developer Tools</span>
                     </div>
-                    <div class="project-links">
-                        <span class="project-wip">In Development</span>
+                    <div class="arc-card-body">
+                        <span class="arc-num">02</span>
+                        <h3>CodeRefine — AI Code Analysis Platform</h3>
+                        <p>Paste any code and get instant AI-powered analysis — identifies bugs, suggests improvements, and explains issues in plain language for faster debugging.</p>
+                        <div class="arc-stack"><span>Python</span><span>Flask</span><span>JavaScript</span><span>MongoDB</span><span>AI APIs</span></div>
+                        <div class="arc-links"><span class="arc-wip">In Development</span></div>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <!-- Salon ERP -->
-            <article class="project-card fade-in">
-                <div class="project-thumb project-thumb--carousel" data-carousel>
-                    <div class="project-track">
-                        <img src="hair%20and%20glow/landinghairandglow.png" alt="Salon ERP landing" loading="lazy">
-                        <img src="hair%20and%20glow/adminhairandglow.png" alt="Salon ERP admin" loading="lazy">
-                        <img src="hair%20and%20glow/appointmenthairand%20glow.png" alt="Salon ERP appointments" loading="lazy">
-                        <img src="hair%20and%20glow/galleryhair%26glow.png" alt="Salon ERP gallery" loading="lazy">
+                <!-- Salon ERP -->
+                <article class="arc-card" data-index="2">
+                    <div class="arc-card-img arc-card-img--carousel" data-carousel>
+                        <div class="project-track">
+                            <img src="hair%20and%20glow/landinghairandglow.png" alt="Salon ERP landing" loading="lazy">
+                            <img src="hair%20and%20glow/adminhairandglow.png" alt="Salon ERP admin" loading="lazy">
+                            <img src="hair%20and%20glow/appointmenthairand%20glow.png" alt="Salon ERP appointments" loading="lazy">
+                            <img src="hair%20and%20glow/galleryhair%26glow.png" alt="Salon ERP gallery" loading="lazy">
+                        </div>
+                        <span class="arc-category">Business Software / Full Stack</span>
                     </div>
-                    <span class="project-category">Business Software / Full Stack</span>
-                    <span class="project-num">03</span>
-                </div>
-                <div class="project-body">
-                    <h3>Salon ERP — POS &amp; CRM System</h3>
-                    <p>Full business management platform for salon chains — handles billing, customer loyalty, multi-branch operations and works offline-first for uninterrupted service.</p>
-                    <div class="project-stack">
-                        <span>Python</span><span>Flask</span><span>SQLite</span><span>JavaScript</span>
+                    <div class="arc-card-body">
+                        <span class="arc-num">03</span>
+                        <h3>Salon ERP — POS &amp; CRM System</h3>
+                        <p>Full business management platform for salon chains — handles billing, customer loyalty, multi-branch operations and works offline-first for uninterrupted service.</p>
+                        <div class="arc-stack"><span>Python</span><span>Flask</span><span>SQLite</span><span>JavaScript</span></div>
+                        <div class="arc-links"><span class="arc-wip">Client Project</span></div>
                     </div>
-                    <div class="project-links">
-                        <span class="project-wip">Client Project</span>
-                    </div>
-                </div>
-            </article>
+                </article>
 
-            <!-- LittleOne -->
-            <article class="project-card fade-in">
-                <div class="project-thumb project-thumb--placeholder">
-                    <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <rect width="600" height="340" fill="#0D0D0D"/>
-                        <rect x="20" y="20" width="560" height="300" rx="6" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
-                        <rect x="40" y="50" width="200" height="16" rx="3" fill="#C9A86A" opacity="0.15"/>
-                        <rect x="40" y="76" width="300" height="10" rx="2" fill="#242424"/>
-                        <rect x="40" y="94" width="260" height="10" rx="2" fill="#1e1e1e"/>
-                        <rect x="40" y="130" width="120" height="80" rx="4" fill="#141414" stroke="#242424" stroke-width="1"/>
-                        <rect x="52" y="142" width="60" height="8" rx="2" fill="#8F6F3F" opacity="0.5"/>
-                        <rect x="52" y="158" width="96" height="6" rx="2" fill="#1e1e1e"/>
-                        <rect x="52" y="172" width="80" height="6" rx="2" fill="#1e1e1e"/>
-                        <rect x="180" y="130" width="120" height="80" rx="4" fill="#141414" stroke="#242424" stroke-width="1"/>
-                        <rect x="192" y="142" width="60" height="8" rx="2" fill="#8F6F3F" opacity="0.5"/>
-                        <rect x="192" y="158" width="96" height="6" rx="2" fill="#1e1e1e"/>
-                        <rect x="192" y="172" width="80" height="6" rx="2" fill="#1e1e1e"/>
-                        <rect x="320" y="130" width="220" height="80" rx="4" fill="#141414" stroke="#C9A86A" stroke-width="1" opacity="0.4"/>
-                        <rect x="332" y="142" width="80" height="8" rx="2" fill="#C9A86A" opacity="0.4"/>
-                        <rect x="332" y="158" width="180" height="6" rx="2" fill="#1e1e1e"/>
-                        <rect x="332" y="172" width="140" height="6" rx="2" fill="#1e1e1e"/>
-                        <text x="300" y="290" text-anchor="middle" font-family="monospace" font-size="13" fill="#706C65" letter-spacing="3">LITTLEONE</text>
-                    </svg>
-                    <span class="project-category">SaaS / AI</span>
-                    <span class="project-num">04</span>
-                </div>
-                <div class="project-body">
-                    <h3>LittleOne — Intelligent Workspace Platform</h3>
-                    <p>A SaaS concept combining project management with an integrated Website Intelligence Engine — designed to give teams AI-assisted context on their own products.</p>
-                    <div class="project-stack">
-                        <span>Python</span><span>AI/ML</span><span>SaaS</span>
+                <!-- LittleOne -->
+                <article class="arc-card" data-index="3">
+                    <div class="arc-card-img arc-card-img--placeholder">
+                        <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="600" height="340" fill="#0D0D0D"/><rect x="20" y="20" width="560" height="300" rx="6" fill="#111" stroke="#1e1e1e" stroke-width="1"/><rect x="40" y="50" width="200" height="16" rx="3" fill="#C9A86A" opacity="0.15"/><rect x="40" y="76" width="300" height="10" rx="2" fill="#242424"/><rect x="40" y="130" width="120" height="80" rx="4" fill="#141414" stroke="#242424" stroke-width="1"/><rect x="180" y="130" width="120" height="80" rx="4" fill="#141414" stroke="#242424" stroke-width="1"/><rect x="320" y="130" width="220" height="80" rx="4" fill="#141414" stroke="#C9A86A" stroke-width="1" opacity="0.4"/><rect x="332" y="142" width="80" height="8" rx="2" fill="#C9A86A" opacity="0.4"/><text x="300" y="290" text-anchor="middle" font-family="monospace" font-size="13" fill="#706C65" letter-spacing="3">LITTLEONE</text></svg>
+                        <span class="arc-category">SaaS / AI</span>
                     </div>
-                    <div class="project-links">
-                        <span class="project-wip">Concept Stage</span>
+                    <div class="arc-card-body">
+                        <span class="arc-num">04</span>
+                        <h3>LittleOne — Intelligent Workspace Platform</h3>
+                        <p>A SaaS concept combining project management with an integrated Website Intelligence Engine — designed to give teams AI-assisted context on their own products.</p>
+                        <div class="arc-stack"><span>Python</span><span>AI/ML</span><span>SaaS</span></div>
+                        <div class="arc-links"><span class="arc-wip">Concept Stage</span></div>
                     </div>
-                </div>
-            </article>
+                </article>
 
+            </div><!-- /.proj-track -->
+        </div><!-- /.proj-track-clip -->
+        <div class="arc-controls">
+            <div class="arc-indicators" id="arcIndicators"></div>
         </div>
     </section>
+    </div><!-- /.projects-outer -->
 
     <!-- WHAT I BUILD SECTION -->
     <section class="services" id="what-i-build">
-        <h2 class="section-title">What I Build</h2>
+        <h2 class="section-title reveal-title">What I Build</h2>
         <div class="services-grid">
             <div><div class="service-item"><h3>AI-Powered Applications</h3><p>Practical applications using AI/ML and LLM technologies.</p></div><div class="service-item"><h3>Backend Systems</h3><p>APIs, authentication systems, database integrations and backend services using Python.</p></div></div>
             <div><div class="service-item"><h3>Data-Driven Products</h3><p>Databases and data-oriented systems that solve practical problems.</p></div><div class="service-item"><h3>Product-Oriented Development</h3><p>Turning real-world problems into usable software products.</p></div></div>
@@ -280,7 +239,7 @@
 
     <!-- CURRENTLY LEARNING SECTION -->
     <section class="skills" id="learning">
-        <h2 class="section-title">Currently Learning</h2>
+        <h2 class="section-title reveal-title">Currently Learning</h2>
         <div class="skills-grid">
             <div class="skill-card fade-in">
                 <h3>Programming &amp; DSA</h3>
