@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AI-Native Intelligent Development Environment</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #1f2937;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 1000px;
+      margin: auto;
+      background: #ffffff;
+      padding: 60px 70px;
+      border-radius: 14px;
+      box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 45px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 30px;
+    }
+
+    .header .label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #2563eb;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+      line-height: 1.25;
+      color: #111827;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #111827;
+      margin-top: 35px;
+      margin-bottom: 12px;
+      border-left: 4px solid #2563eb;
+      padding-left: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      text-align: justify;
+      margin-bottom: 16px;
+    }
+
+    .highlight {
+      margin: 28px 0;
+      padding: 22px 25px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+
+    .architecture {
+      margin: 30px 0;
+      padding: 25px;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 12px;
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    ul {
+      margin: 15px 0 20px 25px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .keywords {
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 2px solid #e5e7eb;
+    }
+
+    .keyword-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .keyword {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 35px 25px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      p {
+        text-align: left;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        max-width: 100%;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <header class="header">
+      <div class="label">Project Abstract</div>
+
+      <h1>
+        AI-Native Intelligent Development Environment
+      </h1>
+
+      <div class="subtitle">
+        A Multi-Model Agentic Platform for Intelligent Software Development
+      </div>
+    </header>
+
+
+    <section>
+      <h2>Abstract</h2>
+
+      <p>
+        The rapid advancement of Large Language Models (LLMs) has significantly
+        transformed software development by enabling intelligent code
+        completion, code generation, debugging, documentation, and natural
+        language interaction with software systems. However, most existing
+        AI coding assistants primarily function as extensions to conventional
+        Integrated Development Environments (IDEs) and are commonly centered
+        around a single AI model or service. Such systems may have limited
+        repository-level understanding, restricted tool interaction, and
+        limited flexibility in selecting models according to different
+        software-development tasks.
+      </p>
+
+      <p>
+        This project proposes an
+        <strong>AI-Native Intelligent Development Environment</strong>
+        that integrates a modern code editor with an intelligent AI software
+        engineering system. The proposed environment is designed to assist
+        developers throughout the software-development lifecycle by combining
+        project-level code understanding, AI-powered planning, code generation,
+        multi-file modification, terminal execution, debugging, testing, and
+        verification within a unified platform.
+      </p>
+
+      <div class="highlight">
+        The primary objective is to move beyond conventional AI-assisted
+        programming toward an intelligent development environment in which
+        AI can understand a software project, reason about development tasks,
+        use appropriate tools, modify code, execute and test programs, and
+        iteratively improve solutions under developer supervision.
+      </div>
+
+      <p>
+        A key component of the proposed system is a
+        <strong>multi-model AI orchestration layer</strong>. Rather than
+        depending on a single proprietary model, the system will provide a
+        model-agnostic architecture capable of integrating cloud-based,
+        open-weight, and locally deployed AI models. Users may configure
+        their own API keys and select suitable models according to their
+        requirements. The architecture can support models from multiple
+        providers and open-model ecosystems, including coding, reasoning,
+        lightweight, and locally hosted models.
+      </p>
+
+      <p>
+        The AI orchestration layer will enable dynamic model selection based
+        on factors such as task complexity, coding capability, context
+        requirements, latency, computational resources, cost, and privacy.
+        This approach aims to provide greater flexibility and reduce
+        dependence on a single AI provider.
+      </p>
+
+      <h2>AI Agent Architecture</h2>
+
+      <p>
+        The proposed AI system will operate as a tool-using software
+        engineering agent. Instead of only generating textual responses,
+        the agent will be provided with controlled access to development
+        tools such as repository search, file reading, file creation,
+        code modification, terminal execution, test execution, and Git
+        operations.
+      </p>
+
+      <div class="architecture">
+                    USER REQUEST
+                         │
+                         ▼
+                ┌─────────────────┐
+                │  TASK ANALYZER  │
+                └────────┬────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │ PROJECT CONTEXT │
+                │   & RETRIEVAL   │
+                └────────┬────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │   AI PLANNER    │
+                └────────┬────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │  MODEL ROUTER   │
+                └────────┬────────┘
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+          Coding      Reasoning    Local/Fast
+           Model        Model        Model
+             │           │           │
+             └───────────┼───────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │   AI AGENT      │
+                └────────┬────────┘
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+          Read/Edit   Terminal     Testing
+             │           │           │
+             └───────────┼───────────┘
+                         ▼
+                 VERIFY RESULTS
+                         │
+                         ▼
+                  DEVELOPER REVIEW
+      </div>
+
+      <h2>Project-Level Code Intelligence</h2>
+
+      <p>
+        To improve repository-level understanding, the system will incorporate
+        code indexing and contextual retrieval techniques. The project may
+        utilize abstract syntax tree analysis, language-server information,
+        symbol extraction, dependency relationships, keyword search, and
+        semantic retrieval to identify the most relevant portions of a
+        software repository for a given task.
+      </p>
+
+      <p>
+        This allows the AI to reason about relationships between files,
+        functions, classes, modules, dependencies, and configuration rather
+        than treating individual source files in isolation.
+      </p>
+
+      <h2>Human-in-the-Loop Development</h2>
+
+      <p>
+        Although the system is designed to support agentic software
+        development, human control will remain an essential component.
+        Developers will be able to inspect proposed modifications through
+        code diffs, approve or reject changes, control model selection,
+        configure permissions, and determine which operations the AI is
+        allowed to perform.
+      </p>
+
+      <p>
+        This human-in-the-loop approach aims to balance AI autonomy with
+        reliability, security, transparency, and developer control.
+      </p>
+
+      <h2>Expected Outcome</h2>
+
+      <p>
+        The expected outcome is a functional AI-native development environment
+        capable of supporting developers from software planning through
+        implementation, execution, testing, debugging, and verification.
+        The system will demonstrate how multiple AI models, agentic workflows,
+        repository-level code intelligence, and developer tools can be
+        integrated into a unified development platform.
+      </p>
+
+      <p>
+        The project will also provide a foundation for evaluating different
+        AI models and orchestration strategies on practical software
+        engineering tasks. Evaluation can consider factors such as task
+        completion rate, functional correctness, code quality, debugging
+        success, execution reliability, latency, resource consumption, and
+        model-selection efficiency.
+      </p>
+
+      <h2>Research Significance</h2>
+
+      <p>
+        The proposed project lies at the intersection of Artificial
+        Intelligence, Large Language Models, Agentic AI, Software Engineering,
+        Information Retrieval, Programming Languages, and Developer Tools.
+        Its research focus is not limited to code generation; instead, it
+        investigates how an AI system can understand software projects,
+        select appropriate models, interact with development tools, execute
+        software, learn from execution feedback, and iteratively improve
+        solutions.
+      </p>
+
+      <p>
+        In the long term, the platform can serve as a foundation for research
+        into multi-model AI orchestration, autonomous software engineering,
+        intelligent codebase understanding, AI-assisted debugging, and
+        human-AI collaboration in software development.
+      </p>
+
+      <div class="highlight">
+        <strong>Core Vision:</strong><br />
+        To create an AI-native development environment where developers do
+        not simply ask an AI to write code, but collaborate with an intelligent
+        software-engineering system capable of understanding, planning,
+        implementing, executing, testing, debugging, and improving software.
+      </div>
+    </section>
+
+
+    <section class="keywords">
+      <h2>Keywords</h2>
+
+      <div class="keyword-list">
+        <span class="keyword">Artificial Intelligence</span>
+        <span class="keyword">Large Language Models</span>
+        <span class="keyword">AI Agents</span>
+        <span class="keyword">Agentic AI</span>
+        <span class="keyword">AI-Native IDE</span>
+        <span class="keyword">Code Generation</span>
+        <span class="keyword">Code Intelligence</span>
+        <span class="keyword">Multi-Model AI</span>
+        <span class="keyword">Model Orchestration</span>
+        <span class="keyword">Repository-Level Understanding</span>
+        <span class="keyword">Automated Debugging</span>
+        <span class="keyword">Software Engineering</span>
+        <span class="keyword">Human-AI Collaboration</span>
+      </div>
+    </section>
+
+
+    <footer class="footer">
+      AI-Native Intelligent Development Environment · Project Proposal
+    </footer>
+
+  </main>
+
+</body>
+</html>
