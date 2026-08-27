@@ -12,8 +12,8 @@ This is Sravan Kumar Meesala's personal portfolio website showcasing AI & Data S
 
 A template file for admin dashboard authentication is configured locally in `.env`.
 
-- **Username**: `sravan`
-- **Password**: `sravan123`
+- **Username**: `username`
+- **Password**: `password`
 
 > Note: Make sure to keep the `.env` file containing credentials excluded from version control systems. It is set up under `.gitignore`.
 
